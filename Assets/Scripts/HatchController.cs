@@ -15,9 +15,6 @@ namespace Assets.Scripts
         public GameObject DoorR;
         public GameObject TourelleBody;
 
-        public float CameraSightY;
-        public float CameraSightZ;
-
         private static HatchController _instance;
 
         public static HatchController Instamce

@@ -15,7 +15,6 @@ namespace Assets.Scripts
         {
             _commandConfig = new CommandsConfig();
             _commandConfig.Init();
-
         }
     }
 }
