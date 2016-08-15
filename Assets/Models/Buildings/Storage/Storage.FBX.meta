@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: dfaf40d070272f349b18ba95e6c9547d
+timeCreated: 1469346665
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Baloon
+    100002: Baloon 1
+    100004: Baloon 2
+    100006: Baloon002
+    100008: Baloon004
+    100010: Baloon1
+    100012: Cylinder002
+    100014: DownTube
+    100016: DownTube001
+    100018: DownTubeShell
+    100020: DownTubeShell001
+    100022: Leg1
+    100024: Leg1 1
+    100026: Leg1 2
+    100028: Leg2
+    100030: Leg2 1
+    100032: Leg2 2
+    100034: //RootNode
+    100036: Support
+    100038: Support 1
+    100040: Support 2
+    100042: Tube004
+    100044: Tube006
+    100046: Tube007
+    100048: Tube008
+    400000: Baloon
+    400002: Baloon 1
+    400004: Baloon 2
+    400006: Baloon002
+    400008: Baloon004
+    400010: Baloon1
+    400012: Cylinder002
+    400014: DownTube
+    400016: DownTube001
+    400018: DownTubeShell
+    400020: DownTubeShell001
+    400022: Leg1
+    400024: Leg1 1
+    400026: Leg1 2
+    400028: Leg2
+    400030: Leg2 1
+    400032: Leg2 2
+    400034: //RootNode
+    400036: Support
+    400038: Support 1
+    400040: Support 2
+    400042: Tube004
+    400044: Tube006
+    400046: Tube007
+    400048: Tube008
+    2300000: Baloon
+    2300002: Baloon 1
+    2300004: Baloon 2
+    2300006: Cylinder002
+    2300008: DownTube
+    2300010: DownTube001
+    2300012: DownTubeShell
+    2300014: DownTubeShell001
+    2300016: Leg1
+    2300018: Leg1 1
+    2300020: Leg1 2
+    2300022: Leg2
+    2300024: Leg2 1
+    2300026: Leg2 2
+    2300028: Support
+    2300030: Support 1
+    2300032: Support 2
+    2300034: Tube004
+    2300036: Tube006
+    2300038: Tube007
+    2300040: Tube008
+    3300000: Baloon
+    3300002: Baloon 1
+    3300004: Baloon 2
+    3300006: Cylinder002
+    3300008: DownTube
+    3300010: DownTube001
+    3300012: DownTubeShell
+    3300014: DownTubeShell001
+    3300016: Leg1
+    3300018: Leg1 1
+    3300020: Leg1 2
+    3300022: Leg2
+    3300024: Leg2 1
+    3300026: Leg2 2
+    3300028: Support
+    3300030: Support 1
+    3300032: Support 2
+    3300034: Tube004
+    3300036: Tube006
+    3300038: Tube007
+    3300040: Tube008
+    4300000: Baloon
+    4300002: Support
+    4300004: Leg1
+    4300006: Leg2
+    4300008: Baloon
+    4300010: Support
+    4300012: Leg1
+    4300014: Leg2
+    4300016: Baloon
+    4300018: Support
+    4300020: Leg1
+    4300022: Leg2
+    4300024: Tube004
+    4300026: DownTube
+    4300028: DownTubeShell
+    4300030: Cylinder002
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
