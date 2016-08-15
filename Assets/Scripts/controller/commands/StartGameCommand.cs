@@ -9,6 +9,7 @@ namespace Assets.Scripts.controller.commands
             base.Execute();
 
             HeadsUpController.HideMenu();
+            CameraController.FollowPlayer();
         }
     }
 }
