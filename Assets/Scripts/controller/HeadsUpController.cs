@@ -36,7 +36,7 @@ namespace Assets.Scripts.controller
             Destroy(StartButton);
             Destroy(SettingsButton);
 
-            Debug.Log("HideMenu");
+            Debug.Log("Hide Menu");
         }
 
         public static void HideMenu()

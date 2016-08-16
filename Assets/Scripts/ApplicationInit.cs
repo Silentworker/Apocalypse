@@ -11,10 +11,12 @@ namespace Assets.Scripts
 
         private CommandsConfig _commandConfig;
 
-        void Start()
+        void Awake()
         {
             _commandConfig = new CommandsConfig();
             _commandConfig.Init();
+
+            EventDispatcher.DispatchEvent(GameEvent.INIT_MENU);
         }
     }
 }

@@ -7,23 +7,16 @@ public class CameraController : MonoBehaviour
     public Vector3 PlayerOffset;
     public Vector3 MenuPosition;
 
-    private static CameraController _instance;
-
     private delegate void UpdateAction();
     private UpdateAction _updateHandler;
-    private Transform _cameraTransform;
     private Transform _playerTransform;
+    private Transform _cameraTransform;
 
+    private static CameraController _instance;
 
     public static CameraController Instamce
     {
         get { return _instance ?? (_instance = FindObjectOfType(typeof(CameraController)) as CameraController); }
-    }
-
-    void Start()
-    {
-        _cameraTransform = gameObject.GetComponent<Transform>();
-        _playerTransform = Player.GetComponent<Transform>();
     }
 
     void LastUpdate()
@@ -33,9 +26,10 @@ public class CameraController : MonoBehaviour
             _updateHandler();
         }
     }
-
+    // region: follow player
     public void followPlayer()
     {
+        Debug.Log("Follow player");
         _updateHandler += FollowPlayerAction;
     }
 
@@ -44,18 +38,46 @@ public class CameraController : MonoBehaviour
         Instamce.followPlayer();
     }
 
+    private void FollowPlayerAction()
+    {
+        CameraTransform.position = PlayerTransform.position + PlayerOffset;
+    }
+    // end region: follow player
+
+    // region: unfollow player
     public void unfollowPlayer()
     {
-        _updateHandler -= FollowPlayerAction;
+        if (_updateHandler != null)
+        {
+            _updateHandler -= FollowPlayerAction;
+        }
     }
 
     public static void UnFollowPlayer()
     {
         Instamce.unfollowPlayer();
     }
+    // end region: unfollow player
 
-    private void FollowPlayerAction()
+    // region: move to menu position
+    public void moveToMenuPosition()
     {
-        _cameraTransform.position = _playerTransform.position + PlayerOffset;
+        CameraTransform.position = MenuPosition;
+    }
+
+    public static void MoveToMenuPosition()
+    {
+        Instamce.moveToMenuPosition();
+    }
+    // end region: move to menu position
+
+    private Transform CameraTransform
+    {
+        get { return _cameraTransform ?? (_cameraTransform = gameObject.GetComponent<Transform>()); }
+    }
+
+    private Transform PlayerTransform
+    {
+        get { return _playerTransform ?? (_playerTransform = Player.GetComponent<Transform>()); }
     }
 }
