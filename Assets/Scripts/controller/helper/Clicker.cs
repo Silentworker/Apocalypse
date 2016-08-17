@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.controller
+namespace Assets.Scripts.controller.helper
 {
     public class Clicker : MonoBehaviour
     {

@@ -17,7 +17,7 @@ namespace Assets.Scripts.core.command.map
             get { return _instance ?? (_instance = new CommandMap()); }
         }
 
-        public void MapEventToCommand(string eventType, Type commandType)
+        public void map(string eventType, Type commandType)
         {
             _commandsTypeDictionary[eventType] = commandType;
 
@@ -36,10 +36,10 @@ namespace Assets.Scripts.core.command.map
 
         public static void Map(string eventType, Type commandType)
         {
-            Instance.MapEventToCommand(eventType, commandType);
+            Instance.map(eventType, commandType);
         }
 
-        public void UnMapEventToCommand(string eventType, Type commandType)
+        public void unMap(string eventType, Type commandType)
         {
             Type checkType = null;
             if (Instance._commandsTypeDictionary.TryGetValue(eventType, out checkType))
@@ -53,7 +53,7 @@ namespace Assets.Scripts.core.command.map
 
         public static void UnMap(string eventType, Type commandType)
         {
-            Instance.UnMapEventToCommand(eventType, commandType);
+            Instance.unMap(eventType, commandType);
         }
 
 

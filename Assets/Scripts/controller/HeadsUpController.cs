@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.core;
+﻿using Assets.Scripts.controller.helper;
+using Assets.Scripts.core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,18 +7,17 @@ namespace Assets.Scripts.controller
 {
     public class HeadsUpController : MonoBehaviour
     {
+        private static HeadsUpController _instance;
+
+        public static HeadsUpController Instance
+        {
+            get { return _instance ?? (_instance = FindObjectOfType(typeof(HeadsUpController)) as HeadsUpController); }
+        }
 
         public GameObject StartButton;
         public GameObject SettingsButton;
         public GameObject MainMenuBg;
         public Text ScoreText;
-
-        private static HeadsUpController _instance;
-
-        public static HeadsUpController Instamce
-        {
-            get { return _instance ?? (_instance = FindObjectOfType(typeof(HeadsUpController)) as HeadsUpController); }
-        }
 
         void Start()
         {
@@ -30,18 +30,13 @@ namespace Assets.Scripts.controller
             settingsButtonLClicker.OnClickHandler += OpenSettingsView;
         }
 
-        public void hideMenu()
+        public void HideMenu()
         {
             Destroy(MainMenuBg);
             Destroy(StartButton);
             Destroy(SettingsButton);
 
             Debug.Log("Hide Menu");
-        }
-
-        public static void HideMenu()
-        {
-            Instamce.hideMenu();
         }
 
         private void StartGame()

@@ -11,7 +11,7 @@ namespace Assets.Scripts.controller.commands
         {
             base.Execute();
 
-            CameraController.MoveToMenuPosition();
+            CameraController.Instance.MoveToMenuPosition();
         }
     }
 }
