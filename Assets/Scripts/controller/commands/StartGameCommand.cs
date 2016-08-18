@@ -9,7 +9,8 @@ namespace Assets.Scripts.controller.commands
         {
             base.Execute();
 
-            HeadsUpController.Instance.HideMenu();
+            HeadsUpController.Instance.HideMainMenu();
+            HeadsUpController.Instance.ShowMobileMenu();
             CameraController.Instance.FollowPlayer();
             PlayerController.Instance.AllowControlls();
         }

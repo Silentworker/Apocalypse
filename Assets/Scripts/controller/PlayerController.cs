@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Scripts.controller
 {
@@ -45,5 +46,25 @@ namespace Assets.Scripts.controller
             _updateHandler -= controlsHandler;
         }
         // end region: Controlls
+
+        public void TurnLeft()
+        {
+
+        }
+
+        public void TurnRight()
+        {
+
+        }
+
+        public void FireMachineGun()
+        {
+
+        }
+
+        public void FireCannon()
+        {
+
+        }
     }
 }

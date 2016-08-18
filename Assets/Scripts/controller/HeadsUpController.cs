@@ -30,7 +30,7 @@ namespace Assets.Scripts.controller
             settingsButtonLClicker.OnClickHandler += OpenSettingsView;
         }
 
-        public void HideMenu()
+        public void HideMainMenu()
         {
             Destroy(MainMenuBg);
             Destroy(StartButton);
@@ -47,6 +47,12 @@ namespace Assets.Scripts.controller
         private void OpenSettingsView()
         {
             Debug.Log("Open settings view...");
+        }
+
+        public void ShowMobileMenu()
+        {
+            GetComponent<MobileMenu>().ShowControlls();
+
         }
     }
 }
