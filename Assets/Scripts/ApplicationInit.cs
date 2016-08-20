@@ -13,7 +13,7 @@ namespace Assets.Scripts
 
         void Awake()
         {
-            Application.targetFrameRate = 300;
+            Application.targetFrameRate = 60;
 
             _commandConfig = new CommandsConfig();
             _commandConfig.Init();

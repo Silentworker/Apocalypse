@@ -19,22 +19,24 @@ namespace Assets.Scripts.controller
 
         public void ShowControlls()
         {
+
             _leftArrow = Instantiate(LeftArrowPrefab);
             _leftArrow.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
+            _leftArrow.GetComponent<Clicker>().OnMouseDownHandler += PlayerController.Instance.TurnLeft;
+            _leftArrow.GetComponent<Clicker>().OnMouseUpHandler += PlayerController.Instance.StopTurn;
 
             _rightArrow = Instantiate(RightArrowPrefab);
             _rightArrow.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
+            _rightArrow.GetComponent<Clicker>().OnMouseDownHandler += PlayerController.Instance.TurnRight;
+            _rightArrow.GetComponent<Clicker>().OnMouseUpHandler += PlayerController.Instance.StopTurn;
 
             _fireCannonButton = Instantiate(FireCannonButtonPrefab);
             _fireCannonButton.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
 
             _fireMachineGunButton = Instantiate(FireMachineGunButtonPrefab);
             _fireMachineGunButton.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
-
-            _leftArrow.GetComponent<Clicker>().OnMouseDownHandler += PlayerController.Instance.TurnLeft;
-            _leftArrow.GetComponent<Clicker>().OnMouseUpHandler += PlayerController.Instance.StopTurn;
-            _rightArrow.GetComponent<Clicker>().OnMouseDownHandler += PlayerController.Instance.TurnRight;
-            _rightArrow.GetComponent<Clicker>().OnMouseUpHandler += PlayerController.Instance.StopTurn;
+            _fireMachineGunButton.GetComponent<Clicker>().OnMouseDownHandler += PlayerController.Instance.FireMachineGun;
+            _fireMachineGunButton.GetComponent<Clicker>().OnMouseUpHandler += PlayerController.Instance.StopFireMachineGun;
 
             Debug.Log("Show mobile controlls");
         }
