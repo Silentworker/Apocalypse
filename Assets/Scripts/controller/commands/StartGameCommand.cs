@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.core.command;
+﻿using Assets.Scripts.controller.player;
+using Assets.Scripts.core.command;
 using UnityEngine;
 
 namespace Assets.Scripts.controller.commands

@@ -4,15 +4,18 @@ namespace Assets.Scripts.controller.helper
 {
     public class Clicker : MonoBehaviour
     {
-        public delegate void ClickHandler();
-        public ClickHandler OnClickHandler;
+        public delegate void MouseActionHandler();
+        public MouseActionHandler OnMouseDownHandler;
+        public MouseActionHandler OnMouseUpHandler;
 
         void OnMouseDown()
         {
-            if (OnClickHandler != null)
-            {
-                OnClickHandler();
-            }
+            if (OnMouseDownHandler != null) { OnMouseDownHandler(); }
+        }
+
+        void OnMouseUp()
+        {
+            if (OnMouseUpHandler != null) { OnMouseUpHandler(); }
         }
     }
 }

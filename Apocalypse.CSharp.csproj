@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -72,12 +74,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\controller\player\Gunner.cs" />
     <Compile Include="Assets\Scripts\ApplicationInit.cs" />
     <Compile Include="Assets\Scripts\controller\CameraController.cs" />
     <Compile Include="Assets\Scripts\controller\HatchController.cs" />
     <Compile Include="Assets\Scripts\controller\HeadsUpController.cs" />
     <Compile Include="Assets\Scripts\controller\MobileMenu.cs" />
-    <Compile Include="Assets\Scripts\controller\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\controller\player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\controller\commands\CommandsConfig.cs" />
     <Compile Include="Assets\Scripts\controller\commands\InitMenuCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\StartGameCommand.cs" />

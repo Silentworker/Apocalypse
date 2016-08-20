@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.controller.helper;
+using Assets.Scripts.controller.player;
 using UnityEngine;
 
 namespace Assets.Scripts.controller
@@ -30,36 +31,30 @@ namespace Assets.Scripts.controller
             _fireMachineGunButton = Instantiate(FireMachineGunButtonPrefab);
             _fireMachineGunButton.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
 
+            _leftArrow.GetComponent<Clicker>().OnMouseDownHandler += PlayerController.Instance.TurnLeft;
+            _leftArrow.GetComponent<Clicker>().OnMouseUpHandler += PlayerController.Instance.StopTurn;
+            _rightArrow.GetComponent<Clicker>().OnMouseDownHandler += PlayerController.Instance.TurnRight;
+            _rightArrow.GetComponent<Clicker>().OnMouseUpHandler += PlayerController.Instance.StopTurn;
+
             Debug.Log("Show mobile controlls");
         }
 
         public void HideControlls()
         {
+            _leftArrow.GetComponent<Clicker>().OnMouseDownHandler -= PlayerController.Instance.TurnLeft;
+            _leftArrow.GetComponent<Clicker>().OnMouseUpHandler -= PlayerController.Instance.StopTurn;
+            _rightArrow.GetComponent<Clicker>().OnMouseDownHandler -= PlayerController.Instance.TurnRight;
+            _rightArrow.GetComponent<Clicker>().OnMouseUpHandler -= PlayerController.Instance.StopTurn;
+
             Destroy(_leftArrow);
             Destroy(_rightArrow);
             Destroy(_fireCannonButton);
             Destroy(_fireMachineGunButton);
         }
 
-        public Clicker.ClickHandler LeftArrowHandler
+        void OnDestroy()
         {
-            get { return _leftArrow.GetComponent<Clicker>().OnClickHandler; }
+            HideControlls();
         }
-
-        public Clicker.ClickHandler RightAHandler
-        {
-            get { return _rightArrow.GetComponent<Clicker>().OnClickHandler; }
-        }
-
-        public Clicker.ClickHandler FireCannonHandler
-        {
-            get { return _fireCannonButton.GetComponent<Clicker>().OnClickHandler; }
-        }
-
-        public Clicker.ClickHandler FireMachineGinHandler
-        {
-            get { return _fireMachineGunButton.GetComponent<Clicker>().OnClickHandler; }
-        }
-
     }
 }

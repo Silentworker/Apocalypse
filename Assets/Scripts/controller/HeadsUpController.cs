@@ -24,10 +24,10 @@ namespace Assets.Scripts.controller
             ScoreText.text = "";
 
             Clicker startButtonLClicker = StartButton.GetComponent<Clicker>();
-            startButtonLClicker.OnClickHandler += StartGame;
+            startButtonLClicker.OnMouseDownHandler += StartGame;
 
             Clicker settingsButtonLClicker = SettingsButton.GetComponent<Clicker>();
-            settingsButtonLClicker.OnClickHandler += OpenSettingsView;
+            settingsButtonLClicker.OnMouseDownHandler += OpenSettingsView;
         }
 
         public void HideMainMenu()
@@ -52,7 +52,6 @@ namespace Assets.Scripts.controller
         public void ShowMobileMenu()
         {
             GetComponent<MobileMenu>().ShowControlls();
-
         }
     }
 }
