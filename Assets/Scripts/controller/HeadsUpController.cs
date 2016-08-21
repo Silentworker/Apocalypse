@@ -23,11 +23,11 @@ namespace Assets.Scripts.controller
         {
             ScoreText.text = "";
 
-            Clicker startButtonLClicker = StartButton.GetComponent<Clicker>();
-            startButtonLClicker.OnMouseDownHandler += StartGame;
+            Toucher startButtonLToucher = StartButton.GetComponent<Toucher>();
+            startButtonLToucher.OnTouchDownHandler += StartGame;
 
-            Clicker settingsButtonLClicker = SettingsButton.GetComponent<Clicker>();
-            settingsButtonLClicker.OnMouseDownHandler += OpenSettingsView;
+            Toucher settingsButtonLToucher = SettingsButton.GetComponent<Toucher>();
+            settingsButtonLToucher.OnTouchDownHandler += OpenSettingsView;
         }
 
         public void HideMainMenu()
