@@ -78,7 +78,7 @@ namespace Assets.Scripts.controller.player
 
         public void StopFireMachineGun()
         {
-            GetComponent<Gunner>().StopFireMAchineGun();
+            GetComponent<Gunner>().StopFireMachineGun();
         }
 
         public void FireCannon()

@@ -31,23 +31,20 @@ namespace Assets.Scripts.controller.player
         {
             _updateAction += RotateMachineGuns;
             _updateAction += CreateMachineGunBullets;
+            GetComponent<AudioSource>().Play();
         }
 
-        public void StopFireMAchineGun()
+        public void StopFireMachineGun()
         {
             _updateAction -= RotateMachineGuns;
             _updateAction -= CreateMachineGunBullets;
+            GetComponent<AudioSource>().Stop();
         }
 
         private void RotateMachineGuns()
         {
             MachineGunL.transform.Rotate(Vector3.forward, MachineGunTurnSpeed * Time.fixedDeltaTime);
             MachineGunR.transform.Rotate(Vector3.forward, -MachineGunTurnSpeed * Time.fixedDeltaTime);
-        }
-
-        private void PlayMachineGunLoopSound()
-        {
-
         }
 
         private void CreateMachineGunBullets()
@@ -65,7 +62,12 @@ namespace Assets.Scripts.controller.player
 
         public void FireCannon()
         {
-            Debug.Log("Fire cannon...");
+            PlayCannonShotSound();
+        }
+
+        private void PlayCannonShotSound()
+        {
+            MainGun.GetComponent<AudioSource>().Play();
         }
     }
 }

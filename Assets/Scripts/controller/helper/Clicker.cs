@@ -10,12 +10,27 @@ namespace Assets.Scripts.controller.helper
 
         void OnMouseDown()
         {
+#if UNITY_EDITOR
+
             if (OnMouseDownHandler != null) { OnMouseDownHandler(); }
+#endif
         }
 
         void OnMouseUp()
         {
+#if UNITY_EDITOR
             if (OnMouseUpHandler != null) { OnMouseUpHandler(); }
+#endif
+        }
+
+        void Update()
+        {
+#if (UNITY_IPHONE || UNITY_ANDROID)
+            if (Input.touchCount > 0)
+            {
+                if (OnMouseDownHandler != null) { OnMouseDownHandler(); }
+            }
+#endif
         }
     }
 }

@@ -32,6 +32,7 @@ namespace Assets.Scripts.controller
 
             _fireCannonButton = Instantiate(FireCannonButtonPrefab);
             _fireCannonButton.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
+            _fireCannonButton.GetComponent<Clicker>().OnMouseDownHandler += PlayerController.Instance.FireCannon;
 
             _fireMachineGunButton = Instantiate(FireMachineGunButtonPrefab);
             _fireMachineGunButton.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);

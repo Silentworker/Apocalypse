@@ -76,7 +76,7 @@
     <Compile Include="Assets\Scripts\controller\CameraController.cs" />
     <Compile Include="Assets\Scripts\controller\HatchController.cs" />
     <Compile Include="Assets\Scripts\controller\HeadsUpController.cs" />
-    <Compile Include="Assets\Scripts\controller\MobileMenu.cs" />
+    <Compile Include="Assets\Scripts\controller\boundary\DestroyByBoundary.cs" />
     <Compile Include="Assets\Scripts\controller\bullet\MoveBullet.cs" />
     <Compile Include="Assets\Scripts\controller\commands\CommandsConfig.cs" />
     <Compile Include="Assets\Scripts\controller\commands\InitMenuCommand.cs" />
@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\core\command\map\ICommandMap.cs" />
     <Compile Include="Assets\Scripts\core\config\IConfig.cs" />
     <Compile Include="Assets\Scripts\model\ZombieModel.cs" />
+    <Compile Include="Assets\Scripts\view\mobile\MobileMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Font48\font48.fnt" />
