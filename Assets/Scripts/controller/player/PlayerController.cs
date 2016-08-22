@@ -12,6 +12,7 @@ namespace Assets.Scripts.controller.player
             get { return _instance ?? (_instance = FindObjectOfType(typeof(PlayerController)) as PlayerController); }
         }
 
+        public GameObject MainCameraBase;
         public float TurnSpeed;
 
         private delegate void UpdateHandler();
@@ -19,6 +20,15 @@ namespace Assets.Scripts.controller.player
         private UpdateHandler _updateHandler;
         private Boolean _turnLeft;
         private Boolean _turnRight;
+
+        void Update()
+        {
+            if (MainCameraBase.transform.rotation != transform.rotation)
+            {
+                MainCameraBase.transform.rotation = Quaternion.Slerp(MainCameraBase.transform.rotation,
+                    transform.rotation, 2 * Time.deltaTime);
+            }
+        }
 
         void FixedUpdate()
         {
@@ -33,12 +43,12 @@ namespace Assets.Scripts.controller.player
         {
             if (_turnLeft)
             {
-                transform.Rotate(Vector3.forward, -TurnSpeed * Time.fixedDeltaTime);
+                transform.Rotate(Vector3.up, -TurnSpeed * Time.fixedDeltaTime);
             }
 
             if (_turnRight)
             {
-                transform.Rotate(Vector3.forward, TurnSpeed * Time.fixedDeltaTime);
+                transform.Rotate(Vector3.up, TurnSpeed * Time.fixedDeltaTime);
             }
         }
 
