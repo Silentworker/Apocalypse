@@ -3,15 +3,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.controller.player
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IPlayerController
     {
-        private static PlayerController _instance;
-
-        public static PlayerController Instance
-        {
-            get { return _instance ?? (_instance = FindObjectOfType(typeof(PlayerController)) as PlayerController); }
-        }
-
         public GameObject MainCameraBase;
         public float TurnSpeed;
 

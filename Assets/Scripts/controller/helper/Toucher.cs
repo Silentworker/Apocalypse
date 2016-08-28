@@ -4,14 +4,14 @@ namespace Assets.Scripts.controller.helper
 {
     public class Toucher : MonoBehaviour
     {
-        private static RaycastHit _hit;
+
 
         public delegate void MouseActionHandler();
 
         public MouseActionHandler OnTouchDownHandler;
         public MouseActionHandler OnTouchUpHandler;
 
-        private Touch _touch;
+        private int _touchID;
 
         void OnMouseDown()
         {
@@ -43,28 +43,30 @@ namespace Assets.Scripts.controller.helper
                 {
                     if (touch.phase == TouchPhase.Began)
                     {
-                        var ray = Camera.main.ScreenPointToRay(touch.position);
-
-                        if (Physics.Raycast(ray, out _hit))
+                        if (DoesHitButton(touch))
                         {
-                            if (_hit.transform == transform)
-                            {
-                                _touch = touch;
+                            _touchID = touch.fingerId;
 
-                                if (OnTouchDownHandler != null)
-                                {
-                                    OnTouchDownHandler();
-                                }
+                            if (OnTouchDownHandler != null)
+                            {
+                                OnTouchDownHandler();
                             }
                         }
                     }
-                    else if (touch.phase == TouchPhase.Ended && touch.fingerId == _touch.fingerId)
+                    else if (touch.phase == TouchPhase.Ended && touch.fingerId == _touchID)
                     {
                         if (OnTouchUpHandler != null) { OnTouchUpHandler(); }
                     }
                 }
             }
 #endif
+        }
+
+        private bool DoesHitButton(Touch touch)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+            RaycastHit hit;
+            return Physics.Raycast(ray, out hit) && hit.transform == transform;
         }
     }
 }
