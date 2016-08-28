@@ -8,6 +8,7 @@ using Assets.Scripts.controller.player;
 using Assets.Scripts.core.command.map;
 using Assets.Scripts.core.config;
 using Assets.Scripts.core.eventdispatcher;
+using Assets.Scripts.model.core;
 using UnityEngine;
 using Zenject;
 
@@ -25,6 +26,7 @@ namespace Assets.Scripts
             Container.Bind<IEventDispatcher>().To<EventDispatcher>().AsSingle();
             Container.Bind<ICommandsMap>().To<CommandsMap>().AsSingle();
             Container.Bind<IConfig>().To<CommandsConfig>().AsSingle();
+            Container.Bind<ApplicationModel>().AsSingle();
 
             Container.Bind<ICameraController>().FromInstance(cameraController);
             Container.Bind<IHeadsUpController>().FromInstance(headsUpController);

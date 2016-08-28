@@ -31,7 +31,6 @@ namespace Assets.Scripts.controller.player
             }
         }
 
-        // region: Controlls
         private void controlsHandler()
         {
             if (_turnLeft)
@@ -45,16 +44,15 @@ namespace Assets.Scripts.controller.player
             }
         }
 
-        public void AllowControlls()
+        public void AllowPlayerControll()
         {
             _updateHandler += controlsHandler;
         }
 
-        public void ForbidControlls()
+        public void ForbidPlayerControll()
         {
             _updateHandler -= controlsHandler;
         }
-        // end region: Controlls
 
         public void TurnLeft()
         {

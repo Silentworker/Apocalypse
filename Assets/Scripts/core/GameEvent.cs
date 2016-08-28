@@ -7,5 +7,6 @@ namespace Assets.Scripts.core
     {
         public static readonly string INIT_MENU = "gameEvent_initMenu";
         public static readonly string START_GAME = "gameEvent_startGame";
+        public static readonly string APP_MODEL = "gameEvent_appModel";
     }
 }

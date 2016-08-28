@@ -20,7 +20,7 @@ namespace Assets.Scripts.controller.commands
         {
             headsUpController.HideMainMenu();
             headsUpController.ShowMobileMenu();
-            playerController.AllowControlls();
+            playerController.AllowPlayerControll();
             cameraController.FollowPlayer();
 
             base.Execute();

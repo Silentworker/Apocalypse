@@ -62,12 +62,8 @@ namespace Assets.Scripts.controller.player
 
         public void FireCannon()
         {
-            PlayCannonShotSound();
-        }
-
-        private void PlayCannonShotSound()
-        {
             MainGun.GetComponent<AudioSource>().Play();
+            
         }
     }
 }

@@ -2,9 +2,9 @@
 {
     interface IPlayerController
     {
-        void AllowControlls();
+        void AllowPlayerControll();
 
-        void ForbidControlls();
+        void ForbidPlayerControll();
 
         void TurnLeft();
 

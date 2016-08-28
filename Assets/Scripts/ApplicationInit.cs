@@ -4,6 +4,7 @@ using Assets.Scripts.core;
 using Assets.Scripts.core.command;
 using Assets.Scripts.core.config;
 using Assets.Scripts.core.eventdispatcher;
+using Assets.Scripts.model.core;
 using Assets.Scripts.models;
 using UnityEngine;
 using Zenject;
@@ -13,9 +14,12 @@ namespace Assets.Scripts
     public class ApplicationInit : MonoBehaviour
     {
         [Inject]
-        private IEventDispatcher eventDispatcher;
+        IEventDispatcher eventDispatcher;
         [Inject]
-        private IConfig commandsConfig;
+        IConfig commandsConfig;
+        [Inject]
+        ApplicationModel applicationModel;
+
 
         private CommandsConfig _commandConfig;
 
@@ -25,7 +29,11 @@ namespace Assets.Scripts
 
             commandsConfig.Init();
 
+            applicationModel.Init();
+
             eventDispatcher.DispatchEvent(GameEvent.INIT_MENU);
+
+
         }
     }
 }
