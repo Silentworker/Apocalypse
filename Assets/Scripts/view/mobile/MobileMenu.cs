@@ -47,10 +47,10 @@ namespace Assets.Scripts.controller
 
         public void HideControlls()
         {
-            //_leftArrow.GetComponent<Toucher>().OnTouchDownHandler -= playerController.TurnLeft;
-            //_leftArrow.GetComponent<Toucher>().OnTouchUpHandler -= playerController.StopTurn;
-            //_rightArrow.GetComponent<Toucher>().OnTouchDownHandler -= playerController.TurnRight;
-            //_rightArrow.GetComponent<Toucher>().OnTouchUpHandler -= playerController.StopTurn;
+            _leftArrow.GetComponent<Toucher>().Clear();
+            _rightArrow.GetComponent<Toucher>().Clear();
+            _fireCannonButton.GetComponent<Toucher>().Clear();
+            _fireMachineGunButton.GetComponent<Toucher>().Clear();
 
             Destroy(_leftArrow);
             Destroy(_rightArrow);

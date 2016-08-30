@@ -1,11 +1,8 @@
-﻿using Assets.Scripts.controller;
-using Assets.Scripts.controller.commands;
+﻿using Assets.Scripts.controller.commands;
 using Assets.Scripts.core;
-using Assets.Scripts.core.command;
 using Assets.Scripts.core.config;
 using Assets.Scripts.core.eventdispatcher;
 using Assets.Scripts.model.core;
-using Assets.Scripts.models;
 using UnityEngine;
 using Zenject;
 
@@ -20,9 +17,6 @@ namespace Assets.Scripts
         [Inject]
         ApplicationModel applicationModel;
 
-
-        private CommandsConfig _commandConfig;
-
         void Awake()
         {
             Application.targetFrameRate = 60;
@@ -31,9 +25,7 @@ namespace Assets.Scripts
 
             applicationModel.Init();
 
-            eventDispatcher.DispatchEvent(GameEvent.INIT_MENU);
-
-
+            eventDispatcher.DispatchEvent(GameEvent.InitMenu);
         }
     }
 }

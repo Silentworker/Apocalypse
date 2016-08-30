@@ -13,6 +13,12 @@ namespace Assets.Scripts.controller.helper
 
         private int _touchID;
 
+        public void Clear()
+        {
+            OnTouchDownHandler = null;
+            OnTouchUpHandler = null;
+        }
+
         void OnMouseDown()
         {
 #if UNITY_EDITOR

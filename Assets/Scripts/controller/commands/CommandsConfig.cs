@@ -8,12 +8,12 @@ namespace Assets.Scripts.controller.commands
     public class CommandsConfig : IConfig
     {
         [Inject]
-        private ICommandsMap _commandsMap;
+        private ICommandsMap commandsMap;
 
         public void Init()
         {
-            _commandsMap.Map(GameEvent.INIT_MENU, typeof(InitMenuCommand));
-            _commandsMap.Map(GameEvent.START_GAME, typeof(StartGameCommand));
+            commandsMap.Map(GameEvent.InitMenu, typeof(InitMenuCommand));
+            commandsMap.Map(GameEvent.StartGame, typeof(StartGameCommand));
         }
     }
 }

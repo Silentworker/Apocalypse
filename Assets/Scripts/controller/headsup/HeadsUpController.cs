@@ -39,7 +39,7 @@ namespace Assets.Scripts.controller.headsup
 
         public void StartGame()
         {
-            eventDispatcher.DispatchEvent(GameEvent.START_GAME);
+            eventDispatcher.DispatchEvent(GameEvent.StartGame);
         }
 
         public void OpenSettingsView()
