@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.core.delegates;
+using UnityEngine;
 
 namespace Assets.Scripts.controller.player
 {
@@ -14,8 +15,7 @@ namespace Assets.Scripts.controller.player
 
         public GameObject MainGun;
 
-        private delegate void UpdateAction();
-        private UpdateAction _updateAction;
+        private Custom.VoidDelegate _updateAction;
 
         private float _shootTime = 0;
 

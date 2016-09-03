@@ -48,10 +48,28 @@ namespace Assets.Scripts.core.command.map
             }
         }
 
+        public void DirectCommand(Type commandType, Object data = null)
+        {
+            if (isCommandType(commandType))
+            {
+                ICommand command = container.Instantiate(commandType) as ICommand;
+                command.Execute(data);
+            }
+            else
+            {
+                Debug.LogErrorFormat("Incompatible command type: {0}", commandType);
+            }
+        }
+
         private UnityAction<Object> GetCommandAction(Type commandType)
         {
             ICommand command = container.Instantiate(commandType) as ICommand;
             return new UnityAction<Object>((data) => { command.Execute(data); });
+        }
+
+        private bool isCommandType(Type commandType)
+        {
+            return commandType.IsAssignableFrom(typeof(ICommand));
         }
     }
 }

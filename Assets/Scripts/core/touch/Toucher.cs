@@ -1,17 +1,15 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.controller.helper
+namespace Assets.Scripts.core.touch
 {
     public class Toucher : MonoBehaviour
     {
-
-
         public delegate void MouseActionHandler();
 
         public MouseActionHandler OnTouchDownHandler;
         public MouseActionHandler OnTouchUpHandler;
 
-        private int _touchID;
+        private int _touchId;
 
         public void Clear()
         {
@@ -51,7 +49,7 @@ namespace Assets.Scripts.controller.helper
                     {
                         if (DoesHitButton(touch))
                         {
-                            _touchID = touch.fingerId;
+                            _touchId = touch.fingerId;
 
                             if (OnTouchDownHandler != null)
                             {
@@ -59,7 +57,7 @@ namespace Assets.Scripts.controller.helper
                             }
                         }
                     }
-                    else if (touch.phase == TouchPhase.Ended && touch.fingerId == _touchID)
+                    else if (touch.phase == TouchPhase.Ended && touch.fingerId == _touchId)
                     {
                         if (OnTouchUpHandler != null) { OnTouchUpHandler(); }
                     }

@@ -1,9 +1,9 @@
-﻿using Assets.Scripts.controller.helper;
-using Assets.Scripts.controller.player;
+﻿using Assets.Scripts.controller.player;
+using Assets.Scripts.core.touch;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.controller
+namespace Assets.Scripts.view.mobile
 {
     public class MobileMenu : MonoBehaviour
     {

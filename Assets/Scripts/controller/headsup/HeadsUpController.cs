@@ -1,6 +1,7 @@
-﻿using Assets.Scripts.controller.helper;
-using Assets.Scripts.core;
+﻿using Assets.Scripts.core;
 using Assets.Scripts.core.eventdispatcher;
+using Assets.Scripts.core.touch;
+using Assets.Scripts.view.mobile;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

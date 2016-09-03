@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -90,22 +88,25 @@
     <Compile Include="Assets\Scripts\controller\hatch\IHatchController.cs" />
     <Compile Include="Assets\Scripts\controller\headsup\HeadsUpController.cs" />
     <Compile Include="Assets\Scripts\controller\headsup\IHeadsUpController.cs" />
-    <Compile Include="Assets\Scripts\controller\helper\Toucher.cs" />
-    <Compile Include="Assets\Scripts\controller\input\InputManager.cs" />
     <Compile Include="Assets\Scripts\controller\player\Gunner.cs" />
     <Compile Include="Assets\Scripts\controller\player\IPlayerController.cs" />
     <Compile Include="Assets\Scripts\controller\player\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\core\command\AsyncCommand.cs" />
-    <Compile Include="Assets\Scripts\core\command\ISequenceMacro.cs" />
-    <Compile Include="Assets\Scripts\core\command\SequenceMacro.cs" />
     <Compile Include="Assets\Scripts\core\GameEvent.cs" />
     <Compile Include="Assets\Scripts\core\command\Command.cs" />
     <Compile Include="Assets\Scripts\core\command\ICommand.cs" />
+    <Compile Include="Assets\Scripts\core\command\async\AsyncCommand.cs" />
+    <Compile Include="Assets\Scripts\core\command\macro\ISequenceMacro.cs" />
+    <Compile Include="Assets\Scripts\core\command\macro\SequenceMacro.cs" />
+    <Compile Include="Assets\Scripts\core\command\macro\mapper\IGuard.cs" />
+    <Compile Include="Assets\Scripts\core\command\macro\mapper\ISubCommandMapper.cs" />
+    <Compile Include="Assets\Scripts\core\command\macro\mapper\SubCommandMapper.cs" />
     <Compile Include="Assets\Scripts\core\command\map\CommandsMap.cs" />
     <Compile Include="Assets\Scripts\core\command\map\ICommandsMap.cs" />
     <Compile Include="Assets\Scripts\core\config\IConfig.cs" />
+    <Compile Include="Assets\Scripts\core\delegates\Custom.cs" />
     <Compile Include="Assets\Scripts\core\eventdispatcher\EventDispatcher.cs" />
     <Compile Include="Assets\Scripts\core\eventdispatcher\IEventDispatcher.cs" />
+    <Compile Include="Assets\Scripts\core\touch\Toucher.cs" />
     <Compile Include="Assets\Scripts\model\ZombieModel.cs" />
     <Compile Include="Assets\Scripts\model\core\ApplicationModel.cs" />
     <Compile Include="Assets\Scripts\view\mobile\MobileMenu.cs" />
