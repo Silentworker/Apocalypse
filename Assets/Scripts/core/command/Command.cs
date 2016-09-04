@@ -5,7 +5,7 @@ using Object = UnityEngine.Object;
 
 namespace Assets.Scripts.core.command
 {
-    public abstract class Command : Object, ICommand
+    public class Command : ICommand
     {
         public Custom.VoidDelegate CancelParent;
 

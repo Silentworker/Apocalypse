@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Scripts.controller.commands;
+using Assets.Scripts.core.command.macro.mapper;
 using Assets.Scripts.core.eventdispatcher;
+using Assets.Scripts.test;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
@@ -16,41 +18,32 @@ namespace Assets.Scripts.core.command.map
         [Inject]
         private DiContainer container;
 
-        private readonly Dictionary<string, Type> _commandsTypeDictionary = new Dictionary<string, Type>();
+        private List<ISubCommandMapper> _commandMappers = new List<ISubCommandMapper>();
 
         public void Map(string eventType, Type commandType)
         {
-            _commandsTypeDictionary[eventType] = commandType;
+            ISubCommandMapper commandMapper = container.Instantiate<SubCommandMapper>();
+            commandMapper.CommandType = commandType;
+            eventDispatcher.AddEventListener(eventType, commandMapper.Execute);
+            _commandMappers.Add(commandMapper);
 
-            UnityAction<Object> action = GetCommandAction(commandType);
-
-            if (action != null)
-            {
-                eventDispatcher.AddEventListener(eventType, action);
-                Debug.LogFormat("Command {0} maped to {1}", commandType, eventType);
-            }
-            else
-            {
-                Debug.LogError("Command map error");
-            }
+            Debug.LogFormat("Command {0} maped to {1}", commandType, eventType);
         }
 
         public void UnMap(string eventType, Type commandType)
         {
-            // todo: Add removing from EventDispatcher
-            Type checkType = null;
-            if (_commandsTypeDictionary.TryGetValue(eventType, out checkType))
+            foreach (ISubCommandMapper commandMapper in _commandMappers)
             {
-                if (checkType == commandType)
+                if (commandMapper.CommandType == commandType)
                 {
-                    _commandsTypeDictionary.Remove(eventType);
+                    eventDispatcher.RemoveEventListener(eventType, commandMapper.Execute);
                 }
             }
         }
 
         public void DirectCommand(Type commandType, Object data = null)
         {
-            if (isCommandType(commandType))
+            if (IsCommandType(commandType))
             {
                 ICommand command = container.Instantiate(commandType) as ICommand;
                 command.Execute(data);
@@ -61,15 +54,9 @@ namespace Assets.Scripts.core.command.map
             }
         }
 
-        private UnityAction<Object> GetCommandAction(Type commandType)
+        private bool IsCommandType(Type commandType)
         {
-            ICommand command = container.Instantiate(commandType) as ICommand;
-            return new UnityAction<Object>((data) => { command.Execute(data); });
-        }
-
-        private bool isCommandType(Type commandType)
-        {
-            return commandType.IsAssignableFrom(typeof(ICommand));
+            return typeof(ICommand).IsAssignableFrom(commandType);
         }
     }
 }

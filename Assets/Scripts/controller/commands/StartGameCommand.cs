@@ -18,12 +18,12 @@ namespace Assets.Scripts.controller.commands
 
         public override void Execute(Object data = null)
         {
-            headsUpController.HideMainMenu();
-            headsUpController.ShowMobileMenu();
+            //headsUpController.HideMainMenu();
+            //headsUpController.ShowMobileMenu();
 
-            playerController.AllowPlayerControll();
+            //playerController.AllowPlayerControll();
 
-            cameraController.FollowPlayer();
+            //cameraController.FollowPlayer();
 
             base.Execute();
         }

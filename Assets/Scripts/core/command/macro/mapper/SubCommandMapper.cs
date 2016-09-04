@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.core.command.async;
 using Assets.Scripts.core.delegates;
+using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
 
@@ -11,6 +13,8 @@ namespace Assets.Scripts.core.command.macro.mapper
         [Inject]
         DiContainer container;
 
+        private List<ICommand> _commands = new List<ICommand>();
+
         private ICommand _command;
         private Type[] _guardTypes;
         private Object _data;
@@ -18,6 +22,16 @@ namespace Assets.Scripts.core.command.macro.mapper
         public Type CommandType { get; set; }
 
         public Custom.VoidDelegate CompleteCallBack { get; set; }
+
+        public SubCommandMapper()
+        {
+            CompleteCallBack += Clear;
+        }
+
+        private void Clear()
+        {
+            _command = null;
+        }
 
         public ISubCommandMapper WithGuards(Type[] guardTypes)
         {
@@ -31,15 +45,19 @@ namespace Assets.Scripts.core.command.macro.mapper
             return this;
         }
 
-        public void Execute()
+        public void Execute(Object data = null)
         {
             if (GuardsPass())
             {
+                if (data != null) _data = data;
+
                 _command = container.Instantiate(CommandType) as ICommand;
+
+                _commands.Add(_command);
 
                 if (_command is AsyncCommand)
                 {
-                    (_command as AsyncCommand).CompleteHandler = CompleteCallBack;
+                    (_command as AsyncCommand).CompleteHandler += CompleteCallBack;
                     _command.Execute(_data);
                     return;
                 }
@@ -52,16 +70,19 @@ namespace Assets.Scripts.core.command.macro.mapper
 
         private bool GuardsPass()
         {
-            foreach (Type guardType in _guardTypes)
+            if (_guardTypes != null)
             {
-                if (guardType.IsAssignableFrom(typeof(IGuard)))
+                foreach (Type guardType in _guardTypes)
                 {
-                    IGuard guard = container.Instantiate(guardType) as IGuard;
-                    if (!guard.Let()) return false;
-                }
-                else
-                {
-                    throw new SystemException("Incompatible guard type");
+                    if (typeof(IGuard).IsAssignableFrom(guardType))
+                    {
+                        IGuard guard = container.Instantiate(guardType) as IGuard;
+                        if (!guard.Let()) return false;
+                    }
+                    else
+                    {
+                        throw new SystemException("Incompatible guard type");
+                    }
                 }
             }
             return true;

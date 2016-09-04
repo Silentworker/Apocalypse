@@ -4,7 +4,7 @@ using Object = UnityEngine.Object;
 
 namespace Assets.Scripts.core.command.async
 {
-    public abstract class AsyncCommand : Command
+    public class AsyncCommand : Command
     {
         public Custom.VoidDelegate CompleteHandler;
 

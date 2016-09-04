@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.controller.player;
 using Assets.Scripts.core.command.async;
 using Assets.Scripts.core.command.macro.mapper;
 using Zenject;
@@ -14,8 +15,8 @@ namespace Assets.Scripts.core.command.macro
         [Inject]
         DiContainer container;
 
-        private readonly List<ISubCommandMapper> _commands = new List<ISubCommandMapper>();
-        private ISubCommandMapper _currenCommand;
+        private readonly List<ISubCommandMapper> _commandMappers = new List<ISubCommandMapper>();
+        private ISubCommandMapper _nextCommandMapper;
 
         public override void Execute(Object data = null)
         {
@@ -33,12 +34,12 @@ namespace Assets.Scripts.core.command.macro
 
         private void Bitwixt()
         {
-            if (_commands.Count > 0)
+            if (_commandMappers.Count > 0)
             {
-                _currenCommand = _commands[0];
-                _commands.RemoveAt(0);
-                _currenCommand.CompleteCallBack = Bitwixt;
-                _currenCommand.Execute();
+                _nextCommandMapper = _commandMappers[0];
+                _commandMappers.RemoveAt(0);
+                _nextCommandMapper.CompleteCallBack += Bitwixt;
+                _nextCommandMapper.Execute();
             }
             else
             {
@@ -50,10 +51,12 @@ namespace Assets.Scripts.core.command.macro
         {
             if (IsCommandType(commandType))
             {
-                ISubCommandMapper command = container.Instantiate<SubCommandMapper>();
-                command.CommandType = commandType;
-                _commands.Add(command);
-                return command;
+                ISubCommandMapper commandMapper = container.Instantiate<SubCommandMapper>();
+                commandMapper.CommandType = commandType;
+                _commandMappers.Add(commandMapper);
+
+
+                return commandMapper;
             }
             else
             {
@@ -66,11 +69,11 @@ namespace Assets.Scripts.core.command.macro
         {
             if (IsCommandType(commandType))
             {
-                foreach (ISubCommandMapper command in _commands)
+                foreach (ISubCommandMapper commandMapper in _commandMappers)
                 {
-                    if (command.CommandType == commandType)
+                    if (commandMapper.CommandType == commandType)
                     {
-                        _commands.Remove(command);
+                        _commandMappers.Remove(commandMapper);
                         return;
                     }
                 }
@@ -84,13 +87,13 @@ namespace Assets.Scripts.core.command.macro
 
         public void Cancel()
         {
-            _commands.Clear();
+            _commandMappers.Clear();
             DispatchComplete(false);
         }
 
         private bool IsCommandType(Type commandType)
         {
-            return commandType.IsAssignableFrom(typeof(ICommand));
+            return typeof(ICommand).IsAssignableFrom(commandType); 
         }
     }
 }

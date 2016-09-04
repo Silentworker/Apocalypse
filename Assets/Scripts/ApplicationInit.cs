@@ -26,6 +26,8 @@ namespace Assets.Scripts
             applicationModel.Init();
 
             eventDispatcher.DispatchEvent(GameEvent.InitMenu);
+
+            eventDispatcher.DispatchEvent(GameEvent.TestAsyncCommand);
         }
     }
 }

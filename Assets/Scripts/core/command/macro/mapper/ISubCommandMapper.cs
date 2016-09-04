@@ -12,8 +12,8 @@ namespace Assets.Scripts.core.command.macro.mapper
 
         ISubCommandMapper WithData(Object data);
 
-        Custom.VoidDelegate NextCallback { get; set; }
+        Custom.VoidDelegate CompleteCallBack { get; set; }
 
-        void Execute();
+        void Execute(Object data = null);
     }
 }

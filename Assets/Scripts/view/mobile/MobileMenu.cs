@@ -22,7 +22,6 @@ namespace Assets.Scripts.view.mobile
 
         public void ShowControlls()
         {
-
             _leftArrow = Instantiate(LeftArrowPrefab);
             _leftArrow.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
             _leftArrow.GetComponent<Toucher>().OnTouchDownHandler += playerController.TurnLeft;
