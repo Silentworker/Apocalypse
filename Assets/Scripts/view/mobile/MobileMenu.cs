@@ -46,10 +46,10 @@ namespace Assets.Scripts.view.mobile
 
         public void HideControlls()
         {
-            _leftArrow.GetComponent<Toucher>().Clear();
-            _rightArrow.GetComponent<Toucher>().Clear();
-            _fireCannonButton.GetComponent<Toucher>().Clear();
-            _fireMachineGunButton.GetComponent<Toucher>().Clear();
+            //_leftArrow.GetComponent<Toucher>().Clear();
+            //_rightArrow.GetComponent<Toucher>().Clear();
+            //_fireCannonButton.GetComponent<Toucher>().Clear();
+            //_fireMachineGunButton.GetComponent<Toucher>().Clear();
 
             Destroy(_leftArrow);
             Destroy(_rightArrow);

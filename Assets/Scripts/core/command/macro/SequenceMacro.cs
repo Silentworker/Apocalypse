@@ -43,6 +43,7 @@ namespace Assets.Scripts.core.command.macro
             }
             else
             {
+                _nextCommandMapper = null;
                 DispatchComplete(true);
             }
         }
@@ -51,10 +52,9 @@ namespace Assets.Scripts.core.command.macro
         {
             if (IsCommandType(commandType))
             {
-                ISubCommandMapper commandMapper = container.Instantiate<SubCommandMapper>();
+                ISubCommandMapper commandMapper = container.Resolve<ISubCommandMapper>();
                 commandMapper.CommandType = commandType;
                 _commandMappers.Add(commandMapper);
-
 
                 return commandMapper;
             }
@@ -69,7 +69,7 @@ namespace Assets.Scripts.core.command.macro
         {
             if (IsCommandType(commandType))
             {
-                foreach (ISubCommandMapper commandMapper in _commandMappers)
+                foreach (var commandMapper in _commandMappers)
                 {
                     if (commandMapper.CommandType == commandType)
                     {
@@ -93,7 +93,7 @@ namespace Assets.Scripts.core.command.macro
 
         private bool IsCommandType(Type commandType)
         {
-            return typeof(ICommand).IsAssignableFrom(commandType); 
+            return typeof(ICommand).IsAssignableFrom(commandType);
         }
     }
 }

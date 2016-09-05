@@ -77,7 +77,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\AppInstaller.cs" />
+    <Compile Include="Assets\Scripts\ApplicationInstaller.cs" />
     <Compile Include="Assets\Scripts\ApplicationInit.cs" />
     <Compile Include="Assets\Scripts\controller\boundary\DestroyByBoundary.cs" />
     <Compile Include="Assets\Scripts\controller\bullet\MoveBullet.cs" />
@@ -111,11 +111,6 @@
     <Compile Include="Assets\Scripts\core\touch\Toucher.cs" />
     <Compile Include="Assets\Scripts\model\ZombieModel.cs" />
     <Compile Include="Assets\Scripts\model\core\ApplicationModel.cs" />
-    <Compile Include="Assets\Scripts\test\TestAsyncCommand.cs" />
-    <Compile Include="Assets\Scripts\test\TestAsyncCommand2.cs" />
-    <Compile Include="Assets\Scripts\test\TestGuard1.cs" />
-    <Compile Include="Assets\Scripts\test\TestMacro.cs" />
-    <Compile Include="Assets\Scripts\test\TestSimpleCommand.cs" />
     <Compile Include="Assets\Scripts\view\mobile\MobileMenu.cs" />
     <Compile Include="Assets\Timer.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder0.cs" />

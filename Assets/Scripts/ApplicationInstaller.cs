@@ -5,6 +5,7 @@ using Assets.Scripts.controller.commands;
 using Assets.Scripts.controller.hatch;
 using Assets.Scripts.controller.headsup;
 using Assets.Scripts.controller.player;
+using Assets.Scripts.core.command.macro.mapper;
 using Assets.Scripts.core.command.map;
 using Assets.Scripts.core.config;
 using Assets.Scripts.core.eventdispatcher;
@@ -14,7 +15,7 @@ using Zenject;
 
 namespace Assets.Scripts
 {
-    public class AppInstaller : MonoInstaller<AppInstaller>
+    public class ApplicationInstaller : MonoInstaller<ApplicationInstaller>
     {
         public CameraController cameraController;
         public HeadsUpController headsUpController;
@@ -24,6 +25,7 @@ namespace Assets.Scripts
         public override void InstallBindings()
         {
             Container.Bind<IEventDispatcher>().To<EventDispatcher>().AsSingle();
+            Container.Bind<ISubCommandMapper>().To<SubCommandMapper>();
             Container.Bind<ICommandsMap>().To<CommandsMap>().AsSingle();
             Container.Bind<IConfig>().To<CommandsConfig>().AsSingle();
             Container.Bind<ApplicationModel>().AsSingle();

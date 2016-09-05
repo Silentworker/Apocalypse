@@ -13,8 +13,6 @@ namespace Assets.Scripts.core.command.macro.mapper
         [Inject]
         DiContainer container;
 
-        private List<ICommand> _commands = new List<ICommand>();
-
         private ICommand _command;
         private Type[] _guardTypes;
         private Object _data;
@@ -52,8 +50,6 @@ namespace Assets.Scripts.core.command.macro.mapper
                 if (data != null) _data = data;
 
                 _command = container.Instantiate(CommandType) as ICommand;
-
-                _commands.Add(_command);
 
                 if (_command is AsyncCommand)
                 {

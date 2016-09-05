@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.controller.commands;
 using Assets.Scripts.core;
+using Assets.Scripts.core.command.map;
 using Assets.Scripts.core.config;
 using Assets.Scripts.core.eventdispatcher;
 using Assets.Scripts.model.core;
@@ -26,8 +27,6 @@ namespace Assets.Scripts
             applicationModel.Init();
 
             eventDispatcher.DispatchEvent(GameEvent.InitMenu);
-
-            eventDispatcher.DispatchEvent(GameEvent.TestAsyncCommand);
         }
     }
 }

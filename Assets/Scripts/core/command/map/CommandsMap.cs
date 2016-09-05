@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Scripts.controller.commands;
 using Assets.Scripts.core.command.macro.mapper;
 using Assets.Scripts.core.eventdispatcher;
-using Assets.Scripts.test;
 using UnityEngine;
-using UnityEngine.Events;
 using Zenject;
 using Object = UnityEngine.Object;
 
@@ -18,25 +15,27 @@ namespace Assets.Scripts.core.command.map
         [Inject]
         private DiContainer container;
 
-        private List<ISubCommandMapper> _commandMappers = new List<ISubCommandMapper>();
+        private readonly List<ISubCommandMapper> _eventCommandMappers = new List<ISubCommandMapper>();
+        private readonly List<ISubCommandMapper> _directCommandMappers = new List<ISubCommandMapper>();
 
         public void Map(string eventType, Type commandType)
         {
-            ISubCommandMapper commandMapper = container.Instantiate<SubCommandMapper>();
+            ISubCommandMapper commandMapper = container.Resolve<ISubCommandMapper>();
             commandMapper.CommandType = commandType;
             eventDispatcher.AddEventListener(eventType, commandMapper.Execute);
-            _commandMappers.Add(commandMapper);
+            _eventCommandMappers.Add(commandMapper);
 
             Debug.LogFormat("Command {0} maped to {1}", commandType, eventType);
         }
 
         public void UnMap(string eventType, Type commandType)
         {
-            foreach (ISubCommandMapper commandMapper in _commandMappers)
+            foreach (var commandMapper in _eventCommandMappers)
             {
                 if (commandMapper.CommandType == commandType)
                 {
                     eventDispatcher.RemoveEventListener(eventType, commandMapper.Execute);
+                    _eventCommandMappers.Remove(commandMapper);
                 }
             }
         }
@@ -45,12 +44,30 @@ namespace Assets.Scripts.core.command.map
         {
             if (IsCommandType(commandType))
             {
-                ICommand command = container.Instantiate(commandType) as ICommand;
-                command.Execute(data);
+                ISubCommandMapper directMapper = null;
+
+                foreach (var mapper in _directCommandMappers)
+                {
+                    if (mapper.CommandType == commandType)
+                    {
+                        directMapper = mapper;
+                        break;
+                    }
+                }
+
+                if (directMapper == null)
+                {
+                    directMapper = container.Resolve<ISubCommandMapper>();
+                    directMapper.CommandType = commandType;
+                    _directCommandMappers.Add(directMapper);
+                }
+
+                directMapper.Execute(data);
             }
             else
             {
-                Debug.LogErrorFormat("Incompatible command type: {0}", commandType);
+                Debug.LogErrorFormat("Incompatible direct command type: {0}", commandType);
+                throw new SystemException("Incompatible direct command type");
             }
         }
 
