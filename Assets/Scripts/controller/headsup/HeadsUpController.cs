@@ -1,5 +1,7 @@
-﻿using Assets.Scripts.core;
+﻿using Assets.Scripts.controller.events;
+using Assets.Scripts.core;
 using Assets.Scripts.core.eventdispatcher;
+using Assets.Scripts.core.events;
 using Assets.Scripts.core.touch;
 using Assets.Scripts.view.mobile;
 using UnityEngine;

@@ -6,7 +6,7 @@ namespace Assets.Scripts.core.command.async
 {
     public class AsyncCommand : Command
     {
-        public Custom.VoidDelegate CompleteHandler;
+        public Custom.CommandCompeteDeletage CompleteHandler;
 
         public override void Execute(Object data = null)
         {
@@ -16,7 +16,7 @@ namespace Assets.Scripts.core.command.async
         protected void DispatchComplete(bool suсcess)
         {
             Debug.LogFormat("[{0}]: complete. Success: {1}", GetType().Name, suсcess);
-            if (CompleteHandler != null) CompleteHandler();
+            if (CompleteHandler != null) CompleteHandler(this);
         }
     }
 }

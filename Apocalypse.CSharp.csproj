@@ -77,8 +77,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ApplicationInstaller.cs" />
     <Compile Include="Assets\Scripts\ApplicationInit.cs" />
+    <Compile Include="Assets\Scripts\ApplicationInstaller.cs" />
     <Compile Include="Assets\Scripts\controller\boundary\DestroyByBoundary.cs" />
     <Compile Include="Assets\Scripts\controller\bullet\MoveBullet.cs" />
     <Compile Include="Assets\Scripts\controller\camera\CameraController.cs" />
@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\controller\commands\CommandsConfig.cs" />
     <Compile Include="Assets\Scripts\controller\commands\InitMenuCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\StartGameCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\events\GameEvent.cs" />
     <Compile Include="Assets\Scripts\controller\hatch\HatchController.cs" />
     <Compile Include="Assets\Scripts\controller\hatch\IHatchController.cs" />
     <Compile Include="Assets\Scripts\controller\headsup\HeadsUpController.cs" />
@@ -93,7 +94,8 @@
     <Compile Include="Assets\Scripts\controller\player\Gunner.cs" />
     <Compile Include="Assets\Scripts\controller\player\IPlayerController.cs" />
     <Compile Include="Assets\Scripts\controller\player\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\core\GameEvent.cs" />
+    <Compile Include="Assets\Scripts\core\command\events\CommandEvent.cs" />
+    <Compile Include="Assets\Scripts\core\events\BaseEvent.cs" />
     <Compile Include="Assets\Scripts\core\command\Command.cs" />
     <Compile Include="Assets\Scripts\core\command\ICommand.cs" />
     <Compile Include="Assets\Scripts\core\command\async\AsyncCommand.cs" />
@@ -111,8 +113,12 @@
     <Compile Include="Assets\Scripts\core\touch\Toucher.cs" />
     <Compile Include="Assets\Scripts\model\ZombieModel.cs" />
     <Compile Include="Assets\Scripts\model\core\ApplicationModel.cs" />
+    <Compile Include="Assets\Scripts\test\TestAsyncCommand.cs" />
+    <Compile Include="Assets\Scripts\test\TestAsyncCommand2.cs" />
+    <Compile Include="Assets\Scripts\test\TestGuard1.cs" />
+    <Compile Include="Assets\Scripts\test\TestMacro.cs" />
+    <Compile Include="Assets\Scripts\test\TestSimpleCommand.cs" />
     <Compile Include="Assets\Scripts\view\mobile\MobileMenu.cs" />
-    <Compile Include="Assets\Timer.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder0.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder1.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder2.cs" />
@@ -310,5 +316,6 @@
     <None Include="Assets\Zenject\LICENSE.txt" />
     <None Include="Assets\Zenject\Version.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

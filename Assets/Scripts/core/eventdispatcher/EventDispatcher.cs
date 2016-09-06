@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Assets.Scripts.core.events;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,38 +7,38 @@ namespace Assets.Scripts.core.eventdispatcher
 {
     public class EventDispatcher : IEventDispatcher
     {
-        private readonly Dictionary<string, GameEvent> _eventDictionary = new Dictionary<string, GameEvent>();
+        private readonly Dictionary<string, BaseEvent> _eventDictionary = new Dictionary<string, BaseEvent>();
 
         public void AddEventListener(string eventType, UnityAction<Object> eventHandler)
         {
-            GameEvent gameEvent = null;
-            if (_eventDictionary.TryGetValue(eventType, out gameEvent))
+            BaseEvent baseEvent = null;
+            if (_eventDictionary.TryGetValue(eventType, out baseEvent))
             {
-                gameEvent.AddListener(eventHandler);
+                baseEvent.AddListener(eventHandler);
             }
             else
             {
-                gameEvent = new GameEvent();
-                gameEvent.AddListener(eventHandler);
-                _eventDictionary.Add(eventType, gameEvent);
+                baseEvent = new BaseEvent();
+                baseEvent.AddListener(eventHandler);
+                _eventDictionary.Add(eventType, baseEvent);
             }
         }
 
         public void RemoveEventListener(string eventType, UnityAction<Object> eventHandler)
         {
-            GameEvent gameEvent = null;
-            if (_eventDictionary.TryGetValue(eventType, out gameEvent))
+            BaseEvent baseEvent = null;
+            if (_eventDictionary.TryGetValue(eventType, out baseEvent))
             {
-                gameEvent.RemoveListener(eventHandler);
+                baseEvent.RemoveListener(eventHandler);
             }
         }
 
         public void DispatchEvent(string eventName, Object data = null)
         {
-            GameEvent gameEvent = null;
-            if (_eventDictionary.TryGetValue(eventName, out gameEvent))
+            BaseEvent baseEvent = null;
+            if (_eventDictionary.TryGetValue(eventName, out baseEvent))
             {
-                gameEvent.Invoke(data);
+                baseEvent.Invoke(data);
             }
         }
     }

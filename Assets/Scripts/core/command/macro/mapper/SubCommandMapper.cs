@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Scripts.core.command.async;
+using Assets.Scripts.core.command.events;
 using Assets.Scripts.core.delegates;
+using Assets.Scripts.core.eventdispatcher;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
@@ -13,7 +15,8 @@ namespace Assets.Scripts.core.command.macro.mapper
         [Inject]
         DiContainer container;
 
-        private ICommand _command;
+        private readonly List<ICommand> _asyncCommandsCahe = new List<ICommand>();
+
         private Type[] _guardTypes;
         private Object _data;
 
@@ -21,14 +24,11 @@ namespace Assets.Scripts.core.command.macro.mapper
 
         public Custom.VoidDelegate CompleteCallBack { get; set; }
 
-        public SubCommandMapper()
+        private void CompleteCommandHandler(ICommand command)
         {
-            CompleteCallBack += Clear;
-        }
+            if (_asyncCommandsCahe.Contains(command)) _asyncCommandsCahe.Remove(command);
 
-        private void Clear()
-        {
-            _command = null;
+            if (CompleteCallBack != null) CompleteCallBack();
         }
 
         public ISubCommandMapper WithGuards(Type[] guardTypes)
@@ -49,19 +49,20 @@ namespace Assets.Scripts.core.command.macro.mapper
             {
                 if (data != null) _data = data;
 
-                _command = container.Instantiate(CommandType) as ICommand;
+                var command = container.Instantiate(CommandType) as ICommand;
 
-                if (_command is AsyncCommand)
+                if (command is AsyncCommand)
                 {
-                    (_command as AsyncCommand).CompleteHandler += CompleteCallBack;
-                    _command.Execute(_data);
+                    _asyncCommandsCahe.Add(command);
+                    (command as AsyncCommand).CompleteHandler += CompleteCommandHandler;
+                    command.Execute(_data);
                     return;
                 }
 
-                _command.Execute(_data);
+                command.Execute(_data);
             }
 
-            CompleteCallBack();
+            if (CompleteCallBack != null) CompleteCallBack();
         }
 
         private bool GuardsPass()
