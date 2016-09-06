@@ -31,8 +31,6 @@ namespace Assets.Scripts
             eventDispatcher.DispatchEvent(GameEvent.InitMenu);
 
             eventDispatcher.DispatchEvent(GameEvent.TestAsyncCommand);
-            eventDispatcher.DispatchEvent(GameEvent.TestAsyncCommand);
-            eventDispatcher.DispatchEvent(GameEvent.TestAsyncCommand);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Assets.Scripts.controller.commands
         {
             commandsMap.Map(GameEvent.InitMenu, typeof(InitMenuCommand));
             //commandsMap.Map(GameEvent.StartGame, typeof(StartGameCommand));
-            commandsMap.Map(GameEvent.TestAsyncCommand, typeof(TestMacro));
+            commandsMap.Map(GameEvent.TestAsyncCommand, typeof(TestMacro1));
         }
     }
 }
