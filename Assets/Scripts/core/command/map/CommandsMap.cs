@@ -20,7 +20,7 @@ namespace Assets.Scripts.core.command.map
 
         public void Map(string eventType, Type commandType)
         {
-            ISubCommandMapper commandMapper = container.Resolve<ISubCommandMapper>();
+            var commandMapper = container.Resolve<ISubCommandMapper>();
             commandMapper.CommandType = commandType;
             eventDispatcher.AddEventListener(eventType, commandMapper.Execute);
             _eventCommandMappers.Add(commandMapper);

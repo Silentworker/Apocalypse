@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Scripts.core.command.async;
-using Assets.Scripts.core.command.events;
 using Assets.Scripts.core.delegates;
-using Assets.Scripts.core.eventdispatcher;
-using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
 

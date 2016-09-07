@@ -52,7 +52,7 @@ namespace Assets.Scripts.core.command.macro
         {
             if (IsCommandType(commandType))
             {
-                ISubCommandMapper commandMapper = container.Resolve<ISubCommandMapper>();
+                var commandMapper = container.Resolve<ISubCommandMapper>();
                 commandMapper.CommandType = commandType;
                 _commandMappers.Add(commandMapper);
 

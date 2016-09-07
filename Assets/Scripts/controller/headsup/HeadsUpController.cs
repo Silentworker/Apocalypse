@@ -1,8 +1,7 @@
 ﻿using Assets.Scripts.controller.events;
-using Assets.Scripts.core;
 using Assets.Scripts.core.eventdispatcher;
-using Assets.Scripts.core.events;
 using Assets.Scripts.core.touch;
+using Assets.Scripts.model.core;
 using Assets.Scripts.view.mobile;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +13,8 @@ namespace Assets.Scripts.controller.headsup
     {
         [Inject]
         IEventDispatcher eventDispatcher;
+        [Inject]
+        ApplicationModel applicationModel;
 
         public GameObject StartButton;
         public GameObject SettingsButton;
@@ -29,6 +30,26 @@ namespace Assets.Scripts.controller.headsup
 
             Toucher settingsButtonLToucher = SettingsButton.GetComponent<Toucher>();
             settingsButtonLToucher.OnTouchDownHandler += OpenSettingsView;
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ResumeOrPauseGame();
+            }
+        }
+
+        private void ResumeOrPauseGame()
+        {
+            if (applicationModel.GamePause)
+            {
+                applicationModel.ResumeGame();
+            }
+            else
+            {
+                applicationModel.PauseGame();
+            }
         }
 
         public void HideMainMenu()

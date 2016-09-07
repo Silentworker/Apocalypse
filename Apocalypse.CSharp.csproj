@@ -84,7 +84,9 @@
     <Compile Include="Assets\Scripts\controller\camera\CameraController.cs" />
     <Compile Include="Assets\Scripts\controller\camera\ICameraController.cs" />
     <Compile Include="Assets\Scripts\controller\commands\CommandsConfig.cs" />
-    <Compile Include="Assets\Scripts\controller\commands\InitMenuCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\menu\InitMenuCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\pause\PauseGameCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\pause\ResumeGameCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\StartGameCommand.cs" />
     <Compile Include="Assets\Scripts\controller\events\GameEvent.cs" />
     <Compile Include="Assets\Scripts\controller\hatch\HatchController.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Assets\Scripts\controller\player\IPlayerController.cs" />
     <Compile Include="Assets\Scripts\controller\player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\core\command\events\CommandEvent.cs" />
+    <Compile Include="Assets\Scripts\core\command\macro\IMacro.cs" />
     <Compile Include="Assets\Scripts\core\events\BaseEvent.cs" />
     <Compile Include="Assets\Scripts\core\command\Command.cs" />
     <Compile Include="Assets\Scripts\core\command\ICommand.cs" />
