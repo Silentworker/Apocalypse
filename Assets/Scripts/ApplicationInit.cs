@@ -23,8 +23,6 @@ namespace Assets.Scripts
             commandsConfig.Init();
 
             applicationModel.Init();
-
-            eventDispatcher.DispatchEvent(GameEvent.InitMenu);
         }
     }
 }

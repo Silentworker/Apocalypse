@@ -18,7 +18,7 @@ namespace Assets.Scripts.core.command.map
         private readonly List<ISubCommandMapper> _eventCommandMappers = new List<ISubCommandMapper>();
         private readonly List<ISubCommandMapper> _directCommandMappers = new List<ISubCommandMapper>();
 
-        public void Map(string eventType, Type commandType)
+        public ISubCommandMapper Map(string eventType, Type commandType)
         {
             var commandMapper = container.Resolve<ISubCommandMapper>();
             commandMapper.CommandType = commandType;
@@ -26,6 +26,7 @@ namespace Assets.Scripts.core.command.map
             _eventCommandMappers.Add(commandMapper);
 
             Debug.LogFormat("Command {0} maped to {1}", commandType, eventType);
+            return commandMapper;
         }
 
         public void UnMap(string eventType, Type commandType)

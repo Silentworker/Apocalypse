@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.controller.commands.pause;
+﻿using Assets.Scripts.controller.commands.menu;
+using Assets.Scripts.controller.commands.pause;
 using Assets.Scripts.controller.events;
 using Assets.Scripts.core;
 using Assets.Scripts.core.command.map;
@@ -20,6 +21,8 @@ namespace Assets.Scripts.controller.commands
             commandsMap.Map(GameEvent.StartGame, typeof(StartGameCommand));
             commandsMap.Map(GameEvent.PauseGame, typeof(PauseGameCommand));
             commandsMap.Map(GameEvent.ResumeGame, typeof(ResumeGameCommand));
+
+            commandsMap.Map(GameEvent.Test, typeof(TestMacro1));
         }
     }
 }

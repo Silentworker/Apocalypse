@@ -13,20 +13,8 @@ namespace Assets.Scripts.core.command.macro.mapper
         DiContainer container;
 
         private readonly List<ICommand> _asyncCommandsCahe = new List<ICommand>();
-
         private Type[] _guardTypes;
         private Object _data;
-
-        public Type CommandType { get; set; }
-
-        public Custom.VoidDelegate CompleteCallBack { get; set; }
-
-        private void CompleteCommandHandler(ICommand command)
-        {
-            if (_asyncCommandsCahe.Contains(command)) _asyncCommandsCahe.Remove(command);
-
-            if (CompleteCallBack != null) CompleteCallBack();
-        }
 
         public ISubCommandMapper WithGuards(Type[] guardTypes)
         {
@@ -47,6 +35,7 @@ namespace Assets.Scripts.core.command.macro.mapper
                 if (data != null) _data = data;
 
                 var command = container.Instantiate(CommandType) as ICommand;
+                (command as ISubCommand).CalcelParentCallback = CancelParentCallback;
 
                 if (command is AsyncCommand)
                 {
@@ -59,7 +48,14 @@ namespace Assets.Scripts.core.command.macro.mapper
                 command.Execute(_data);
             }
 
-            if (CompleteCallBack != null) CompleteCallBack();
+            if (CompleteCallBack != null) CompleteCallBack(true);
+        }
+
+        private void CompleteCommandHandler(ICommand command, bool success)
+        {
+            if (_asyncCommandsCahe.Contains(command)) _asyncCommandsCahe.Remove(command);
+
+            if (CompleteCallBack != null) CompleteCallBack(success);
         }
 
         private bool GuardsPass()
@@ -81,5 +77,11 @@ namespace Assets.Scripts.core.command.macro.mapper
             }
             return true;
         }
+
+        public Type CommandType { get; set; }
+
+        public CustomDelegate.BoolParameter CompleteCallBack { get; set; }
+
+        public CustomDelegate.Void CancelParentCallback { get; set; }
     }
 }

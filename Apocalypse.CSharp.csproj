@@ -84,10 +84,10 @@
     <Compile Include="Assets\Scripts\controller\camera\CameraController.cs" />
     <Compile Include="Assets\Scripts\controller\camera\ICameraController.cs" />
     <Compile Include="Assets\Scripts\controller\commands\CommandsConfig.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\StartGameCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\menu\InitMenuCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\pause\PauseGameCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\pause\ResumeGameCommand.cs" />
-    <Compile Include="Assets\Scripts\controller\commands\StartGameCommand.cs" />
     <Compile Include="Assets\Scripts\controller\events\GameEvent.cs" />
     <Compile Include="Assets\Scripts\controller\hatch\HatchController.cs" />
     <Compile Include="Assets\Scripts\controller\hatch\IHatchController.cs" />
@@ -96,12 +96,11 @@
     <Compile Include="Assets\Scripts\controller\player\Gunner.cs" />
     <Compile Include="Assets\Scripts\controller\player\IPlayerController.cs" />
     <Compile Include="Assets\Scripts\controller\player\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\core\command\events\CommandEvent.cs" />
-    <Compile Include="Assets\Scripts\core\command\macro\IMacro.cs" />
-    <Compile Include="Assets\Scripts\core\events\BaseEvent.cs" />
     <Compile Include="Assets\Scripts\core\command\Command.cs" />
     <Compile Include="Assets\Scripts\core\command\ICommand.cs" />
     <Compile Include="Assets\Scripts\core\command\async\AsyncCommand.cs" />
+    <Compile Include="Assets\Scripts\core\command\ISubCommand.cs" />
+    <Compile Include="Assets\Scripts\core\command\macro\IMacro.cs" />
     <Compile Include="Assets\Scripts\core\command\macro\ISequenceMacro.cs" />
     <Compile Include="Assets\Scripts\core\command\macro\SequenceMacro.cs" />
     <Compile Include="Assets\Scripts\core\command\macro\mapper\IGuard.cs" />
@@ -110,12 +109,15 @@
     <Compile Include="Assets\Scripts\core\command\map\CommandsMap.cs" />
     <Compile Include="Assets\Scripts\core\command\map\ICommandsMap.cs" />
     <Compile Include="Assets\Scripts\core\config\IConfig.cs" />
-    <Compile Include="Assets\Scripts\core\delegates\Custom.cs" />
+    <Compile Include="Assets\Scripts\core\delegates\CustomDelegate.cs" />
     <Compile Include="Assets\Scripts\core\eventdispatcher\EventDispatcher.cs" />
     <Compile Include="Assets\Scripts\core\eventdispatcher\IEventDispatcher.cs" />
+    <Compile Include="Assets\Scripts\core\events\BaseEvent.cs" />
+    <Compile Include="Assets\Scripts\core\model\Model.cs" />
     <Compile Include="Assets\Scripts\core\touch\Toucher.cs" />
     <Compile Include="Assets\Scripts\model\ZombieModel.cs" />
     <Compile Include="Assets\Scripts\model\core\ApplicationModel.cs" />
+    <Compile Include="Assets\Scripts\model\level\LevelModel.cs" />
     <Compile Include="Assets\Scripts\test\TestAsyncCommand1.cs" />
     <Compile Include="Assets\Scripts\test\TestAsyncCommand2.cs" />
     <Compile Include="Assets\Scripts\test\TestAsyncCommand3.cs" />
@@ -320,12 +322,12 @@
     <Compile Include="Assets\Zenject\Source\Validation\IValidatable.cs" />
     <Compile Include="Assets\Zenject\Source\Validation\ValidationMarker.cs" />
     <Compile Include="Assets\Zenject\Source\Validation\ValidationSceneDisabler.cs" />
+    <Compile Include="Assets\ZombieBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Font48\font48.fnt" />
     <None Include="Assets\Zenject\LICENSE.txt" />
     <None Include="Assets\Zenject\Version.txt" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

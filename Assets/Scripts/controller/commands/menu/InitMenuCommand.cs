@@ -1,11 +1,9 @@
 ﻿using Assets.Scripts.controller.camera;
-using Assets.Scripts.core.eventdispatcher;
-using Assets.Scripts.models;
 using UnityEngine;
 using Zenject;
 using Command = Assets.Scripts.core.command.Command;
 
-namespace Assets.Scripts.controller.commands
+namespace Assets.Scripts.controller.commands.menu
 {
     public class InitMenuCommand : Command
     {

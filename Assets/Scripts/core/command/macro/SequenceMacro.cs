@@ -18,34 +18,23 @@ namespace Assets.Scripts.core.command.macro
         private readonly List<ISubCommandMapper> _commandMappers = new List<ISubCommandMapper>();
         private ISubCommandMapper _nextCommandMapper;
 
+        protected SequenceMacro()
+        {
+            Atomic = true;
+        }
+
         public override void Execute(Object data = null)
         {
             base.Execute();
 
             Prepare();
 
-            Bitwixt();
+            Inter(true);
         }
 
         public virtual void Prepare()
         {
 
-        }
-
-        private void Bitwixt()
-        {
-            if (_commandMappers.Count > 0)
-            {
-                _nextCommandMapper = _commandMappers[0];
-                _commandMappers.RemoveAt(0);
-                _nextCommandMapper.CompleteCallBack += Bitwixt;
-                _nextCommandMapper.Execute();
-            }
-            else
-            {
-                _nextCommandMapper = null;
-                DispatchComplete(true);
-            }
         }
 
         public ISubCommandMapper Add(Type commandType)
@@ -88,12 +77,39 @@ namespace Assets.Scripts.core.command.macro
         public void Cancel()
         {
             _commandMappers.Clear();
+            _nextCommandMapper = null;
             DispatchComplete(false);
+        }
+
+        private void Inter(bool successPrevious)
+        {
+            if (Atomic && !successPrevious)
+            {
+                Cancel();
+                return;
+            }
+
+            if (_commandMappers.Count > 0)
+            {
+                _nextCommandMapper = _commandMappers[0];
+                _commandMappers.RemoveAt(0);
+                _nextCommandMapper.CompleteCallBack += Inter;
+                _nextCommandMapper.CancelParentCallback += Cancel;
+                _nextCommandMapper.Execute();
+            }
+            else
+            {
+                _commandMappers.Clear();
+                _nextCommandMapper = null;
+                DispatchComplete(true);
+            }
         }
 
         private bool IsCommandType(Type commandType)
         {
             return typeof(ICommand).IsAssignableFrom(commandType);
         }
+
+        protected bool Atomic { get; set; }
     }
 }

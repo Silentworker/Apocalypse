@@ -5,13 +5,19 @@ using Object = UnityEngine.Object;
 
 namespace Assets.Scripts.core.command
 {
-    public class Command : ICommand
+    public abstract class Command : ICommand, ISubCommand
     {
-        public Custom.VoidDelegate CancelParent;
 
         public virtual void Execute(Object data = null)
         {
             Debug.LogFormat("[{0}]: execute", GetType().Name);
         }
+
+        public void CancelParent()
+        {
+            if (CalcelParentCallback != null) CalcelParentCallback();
+        }
+
+        public CustomDelegate.Void CalcelParentCallback { get; set; }
     }
 }

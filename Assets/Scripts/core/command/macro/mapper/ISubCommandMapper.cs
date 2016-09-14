@@ -6,14 +6,16 @@ namespace Assets.Scripts.core.command.macro.mapper
 {
     public interface ISubCommandMapper
     {
-        Type CommandType { get; set; }
+        void Execute(Object data = null);
 
         ISubCommandMapper WithGuards(Type[] guardTypes);
 
         ISubCommandMapper WithData(Object data);
 
-        Custom.VoidDelegate CompleteCallBack { get; set; }
+        Type CommandType { get; set; }
 
-        void Execute(Object data = null);
+        CustomDelegate.BoolParameter CompleteCallBack { get; set; }
+
+        CustomDelegate.Void CancelParentCallback { get; set; }
     }
 }

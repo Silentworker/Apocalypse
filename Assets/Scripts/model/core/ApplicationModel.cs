@@ -1,17 +1,15 @@
 ﻿using Assets.Scripts.controller.events;
 using Assets.Scripts.core;
 using Assets.Scripts.core.eventdispatcher;
+using Assets.Scripts.core.model;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.model.core
 {
-    public class ApplicationModel
+    public class ApplicationModel : Model
     {
-        [Inject]
-        IEventDispatcher eventDispatcher;
-
         private int _score;
         private int _gateHealth;
         private bool _gamePause = false;
@@ -24,6 +22,10 @@ namespace Assets.Scripts.model.core
         public void Init()
         {
             Debug.Log("Application model initiated");
+
+            eventDispatcher.DispatchEvent(GameEvent.InitMenu);
+
+            eventDispatcher.DispatchEvent(GameEvent.Test);
         }
 
         public void PauseGame()
@@ -42,5 +44,10 @@ namespace Assets.Scripts.model.core
             eventDispatcher.DispatchEvent(GameEvent.ResumeGame);
         }
 
+
+        public ApplicationModel(IEventDispatcher dispatcher, DiContainer dicontainer) : base(dispatcher, dicontainer)
+        {
+
+        }
     }
 }

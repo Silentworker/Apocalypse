@@ -20,7 +20,7 @@ namespace Assets.Scripts.test
         void OnStartGame(Object data = null)
         {
             eventDispatcher.RemoveEventListener(GameEvent.StartGame, OnStartGame);
-            DispatchComplete(true);
+            DispatchComplete(false);
         }
     }
 }

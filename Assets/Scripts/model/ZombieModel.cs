@@ -1,16 +1,14 @@
 ﻿
-using UnityEngine;
-
-namespace Assets.Scripts.models
+namespace Assets.Scripts.model
 {
-    public class ZombieModel:Object
+    public class ZombieModel
     {
         public string Name;
         public int Health;
 
         public ZombieModel()
         {
-           
+
         }
     }
 }

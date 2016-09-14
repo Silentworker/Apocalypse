@@ -15,7 +15,7 @@ namespace Assets.Scripts.controller.player
 
         public GameObject MainGun;
 
-        private Custom.VoidDelegate _updateAction;
+        private CustomDelegate.Void _updateAction;
 
         private float _shootTime = 0;
 
