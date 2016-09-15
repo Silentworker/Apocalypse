@@ -7,8 +7,9 @@ namespace Assets.Scripts.controller.commands.pause
     {
         public override void Execute(Object data = null)
         {
-            Time.timeScale = 1;
             base.Execute();
+
+            Time.timeScale = 1;
         }
     }
 }

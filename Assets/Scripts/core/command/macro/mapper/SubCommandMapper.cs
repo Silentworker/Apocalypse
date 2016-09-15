@@ -13,12 +13,22 @@ namespace Assets.Scripts.core.command.macro.mapper
         DiContainer container;
 
         private readonly List<ICommand> _asyncCommandsCahe = new List<ICommand>();
-        private Type[] _guardTypes;
+        private Queue<Type> _guardTypes;
         private Object _data;
 
-        public ISubCommandMapper WithGuards(Type[] guardTypes)
+        public ISubCommandMapper WithGuard(Type guardType)
         {
-            _guardTypes = guardTypes;
+            if (!typeof(IGuard).IsAssignableFrom(guardType))
+            {
+                throw new SystemException("Incompatible guard type");
+            }
+
+            if (_guardTypes == null)
+            {
+                _guardTypes = new Queue<Type>();
+            }
+            _guardTypes.Enqueue(guardType);
+
             return this;
         }
 
@@ -62,17 +72,10 @@ namespace Assets.Scripts.core.command.macro.mapper
         {
             if (_guardTypes != null)
             {
-                foreach (Type guardType in _guardTypes)
+                while (_guardTypes.Count > 0)
                 {
-                    if (typeof(IGuard).IsAssignableFrom(guardType))
-                    {
-                        IGuard guard = container.Instantiate(guardType) as IGuard;
-                        if (!guard.Let()) return false;
-                    }
-                    else
-                    {
-                        throw new SystemException("Incompatible guard type");
-                    }
+                    IGuard guard = container.Instantiate(_guardTypes.Dequeue()) as IGuard;
+                    if (!guard.Let()) return false;
                 }
             }
             return true;

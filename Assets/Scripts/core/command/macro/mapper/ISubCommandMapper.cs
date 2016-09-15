@@ -8,7 +8,7 @@ namespace Assets.Scripts.core.command.macro.mapper
     {
         void Execute(Object data = null);
 
-        ISubCommandMapper WithGuards(Type[] guardTypes);
+        ISubCommandMapper WithGuard(Type guardType);
 
         ISubCommandMapper WithData(Object data);
 

@@ -77,7 +77,7 @@ namespace Assets.Scripts.core.command.macro
         public void Cancel()
         {
             _commandMappers.Clear();
-            _nextCommandMapper = null;
+            _nextCommandMapper.CompleteCallBack = null;
             DispatchComplete(false);
         }
 

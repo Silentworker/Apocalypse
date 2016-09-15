@@ -1,11 +1,8 @@
 ﻿using Assets.Scripts.controller.commands.menu;
 using Assets.Scripts.controller.commands.pause;
 using Assets.Scripts.controller.events;
-using Assets.Scripts.core;
 using Assets.Scripts.core.command.map;
 using Assets.Scripts.core.config;
-using Assets.Scripts.core.events;
-using Assets.Scripts.test;
 using Zenject;
 
 namespace Assets.Scripts.controller.commands
@@ -21,8 +18,6 @@ namespace Assets.Scripts.controller.commands
             commandsMap.Map(GameEvent.StartGame, typeof(StartGameCommand));
             commandsMap.Map(GameEvent.PauseGame, typeof(PauseGameCommand));
             commandsMap.Map(GameEvent.ResumeGame, typeof(ResumeGameCommand));
-
-            commandsMap.Map(GameEvent.Test, typeof(TestMacro1));
         }
     }
 }

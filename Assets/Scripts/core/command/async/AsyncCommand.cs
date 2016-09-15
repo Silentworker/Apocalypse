@@ -8,8 +8,6 @@ namespace Assets.Scripts.core.command.async
     {
         public CustomDelegate.CommandCompete CompleteHandler;
 
-        public CustomDelegate.Void CalcelParentHandler;
-
         public override void Execute(Object data = null)
         {
             base.Execute();

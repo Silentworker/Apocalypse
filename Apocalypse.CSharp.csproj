@@ -114,6 +114,9 @@
     <Compile Include="Assets\Scripts\core\eventdispatcher\IEventDispatcher.cs" />
     <Compile Include="Assets\Scripts\core\events\BaseEvent.cs" />
     <Compile Include="Assets\Scripts\core\model\Model.cs" />
+    <Compile Include="Assets\Scripts\core\settings\AbstractSettingManager.cs" />
+    <Compile Include="Assets\Scripts\core\settings\ISettingManager.cs" />
+    <Compile Include="Assets\Scripts\core\settings\SettingConfig.cs" />
     <Compile Include="Assets\Scripts\core\touch\Toucher.cs" />
     <Compile Include="Assets\Scripts\model\ZombieModel.cs" />
     <Compile Include="Assets\Scripts\model\core\ApplicationModel.cs" />

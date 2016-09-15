@@ -7,7 +7,6 @@ namespace Assets.Scripts.core.command
 {
     public abstract class Command : ICommand, ISubCommand
     {
-
         public virtual void Execute(Object data = null)
         {
             Debug.LogFormat("[{0}]: execute", GetType().Name);
