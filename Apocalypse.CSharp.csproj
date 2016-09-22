@@ -77,6 +77,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\ApplicationInit.cs" />
     <Compile Include="Assets\Scripts\ApplicationInstaller.cs" />
     <Compile Include="Assets\Scripts\controller\boundary\DestroyByBoundary.cs" />
@@ -85,7 +86,7 @@
     <Compile Include="Assets\Scripts\controller\camera\ICameraController.cs" />
     <Compile Include="Assets\Scripts\controller\commands\CommandsConfig.cs" />
     <Compile Include="Assets\Scripts\controller\commands\StartGameCommand.cs" />
-    <Compile Include="Assets\Scripts\controller\commands\menu\InitMenuCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\menu\ShowMainMenuCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\pause\PauseGameCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\pause\ResumeGameCommand.cs" />
     <Compile Include="Assets\Scripts\controller\events\GameEvent.cs" />
@@ -98,8 +99,8 @@
     <Compile Include="Assets\Scripts\controller\player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\core\command\Command.cs" />
     <Compile Include="Assets\Scripts\core\command\ICommand.cs" />
-    <Compile Include="Assets\Scripts\core\command\async\AsyncCommand.cs" />
     <Compile Include="Assets\Scripts\core\command\ISubCommand.cs" />
+    <Compile Include="Assets\Scripts\core\command\async\AsyncCommand.cs" />
     <Compile Include="Assets\Scripts\core\command\macro\IMacro.cs" />
     <Compile Include="Assets\Scripts\core\command\macro\ISequenceMacro.cs" />
     <Compile Include="Assets\Scripts\core\command\macro\SequenceMacro.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Assets\Scripts\model\ZombieModel.cs" />
     <Compile Include="Assets\Scripts\model\core\ApplicationModel.cs" />
     <Compile Include="Assets\Scripts\model\level\LevelModel.cs" />
+    <Compile Include="Assets\Scripts\service\SettingsManager.cs" />
     <Compile Include="Assets\Scripts\test\TestAsyncCommand1.cs" />
     <Compile Include="Assets\Scripts\test\TestAsyncCommand2.cs" />
     <Compile Include="Assets\Scripts\test\TestAsyncCommand3.cs" />
@@ -133,7 +135,8 @@
     <Compile Include="Assets\Scripts\test\TestSimpleCommand1.cs" />
     <Compile Include="Assets\Scripts\test\TestSimpleCommand2.cs" />
     <Compile Include="Assets\Scripts\test\TestSimpleCommand3.cs" />
-    <Compile Include="Assets\Scripts\view\mobile\MobileMenu.cs" />
+    <Compile Include="Assets\Scripts\view\headsup\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\view\headsup\MobileMenu.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder0.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder1.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder2.cs" />

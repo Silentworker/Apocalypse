@@ -2,12 +2,12 @@
 {
     interface IHeadsUpController
     {
+        void ShowMainMenu();
+
         void HideMainMenu();
 
-        void StartGame();
-
-        void OpenSettingsView();
-
         void ShowMobileMenu();
+
+        void HideMobileMenu();
     }
 }

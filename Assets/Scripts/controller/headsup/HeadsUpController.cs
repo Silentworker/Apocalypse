@@ -1,10 +1,8 @@
-﻿using Assets.Scripts.controller.events;
-using Assets.Scripts.core.eventdispatcher;
-using Assets.Scripts.core.touch;
+﻿using Assets.Scripts.core.eventdispatcher;
 using Assets.Scripts.model.core;
+using Assets.Scripts.view.headsup;
 using Assets.Scripts.view.mobile;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace Assets.Scripts.controller.headsup
@@ -15,22 +13,6 @@ namespace Assets.Scripts.controller.headsup
         IEventDispatcher eventDispatcher;
         [Inject]
         ApplicationModel applicationModel;
-
-        public GameObject StartButton;
-        public GameObject SettingsButton;
-        public GameObject MainMenuBg;
-        public Text ScoreText;
-
-        void Start()
-        {
-            ScoreText.text = "";
-
-            Toucher startButtonLToucher = StartButton.GetComponent<Toucher>();
-            startButtonLToucher.OnTouchDownHandler += StartGame;
-
-            Toucher settingsButtonLToucher = SettingsButton.GetComponent<Toucher>();
-            settingsButtonLToucher.OnTouchDownHandler += OpenSettingsView;
-        }
 
         void Update()
         {
@@ -52,28 +34,24 @@ namespace Assets.Scripts.controller.headsup
             }
         }
 
+        public void ShowMainMenu()
+        {
+            GetComponent<MainMenu>().ShowMenu();
+        }
+
         public void HideMainMenu()
         {
-            Destroy(MainMenuBg);
-            Destroy(StartButton);
-            Destroy(SettingsButton);
-
-            Debug.Log("Hide Menu");
-        }
-
-        public void StartGame()
-        {
-            eventDispatcher.DispatchEvent(GameEvent.StartGame);
-        }
-
-        public void OpenSettingsView()
-        {
-            Debug.Log("Open settings view...");
+            GetComponent<MainMenu>().HideMenu();
         }
 
         public void ShowMobileMenu()
         {
             GetComponent<MobileMenu>().ShowControlls();
+        }
+
+        public void HideMobileMenu()
+        {
+            GetComponent<MobileMenu>().HideControlls();
         }
     }
 }

@@ -7,7 +7,9 @@ using Assets.Scripts.core.command.macro.mapper;
 using Assets.Scripts.core.command.map;
 using Assets.Scripts.core.config;
 using Assets.Scripts.core.eventdispatcher;
+using Assets.Scripts.core.settings;
 using Assets.Scripts.model.core;
+using Assets.Scripts.service;
 using Zenject;
 
 namespace Assets.Scripts
@@ -25,8 +27,8 @@ namespace Assets.Scripts
             Container.Bind<ISubCommandMapper>().To<SubCommandMapper>();
             Container.Bind<ICommandsMap>().To<CommandsMap>().AsSingle();
             Container.Bind<IConfig>().To<CommandsConfig>().AsSingle();
+            Container.Bind<ISettingManager>().To<SettingsManager>().AsSingle();
             Container.Bind<ApplicationModel>().AsSingle();
-
 
             /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 MonoBehaviour controllers

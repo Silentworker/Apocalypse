@@ -16,7 +16,12 @@ namespace Assets.Scripts.core.settings
             Init();
         }
 
-        protected virtual void Init()
+        public virtual void Init()
+        {
+
+        }
+
+        protected virtual void LoadSettings()
         {
 
         }
