@@ -10,10 +10,10 @@ namespace Assets.Scripts.core.model
         protected IEventDispatcher eventDispatcher;
         protected DiContainer container;
 
-        protected Model(IEventDispatcher dispatcher, DiContainer dicontainer)
+        protected Model(IEventDispatcher dispatcher, DiContainer container)
         {
             eventDispatcher = dispatcher;
-            container = dicontainer;
+            this.container = container;
         }
     }
 }

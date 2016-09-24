@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.controller.camera;
 using Assets.Scripts.controller.headsup;
 using Assets.Scripts.controller.player;
+using Assets.Scripts.model.core;
 using UnityEngine;
 using Zenject;
 using Command = Assets.Scripts.core.command.Command;
@@ -15,9 +16,13 @@ namespace Assets.Scripts.controller.commands
         IHeadsUpController headsUpController;
         [Inject]
         IPlayerController playerController;
+        [Inject]
+        ApplicationModel applicationModel;
 
         public override void Execute(Object data = null)
         {
+            base.Execute();
+
             headsUpController.HideMainMenu();
             headsUpController.ShowMobileMenu();
 
@@ -25,7 +30,7 @@ namespace Assets.Scripts.controller.commands
 
             cameraController.FollowPlayer();
 
-            base.Execute();
+            applicationModel.StartLevel();
         }
     }
 }

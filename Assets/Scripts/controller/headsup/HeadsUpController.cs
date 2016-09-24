@@ -24,7 +24,7 @@ namespace Assets.Scripts.controller.headsup
 
         private void ResumeOrPauseGame()
         {
-            if (applicationModel.GamePause)
+            if (applicationModel.GamePaused)
             {
                 applicationModel.ResumeGame();
             }

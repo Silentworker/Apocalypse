@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Font48\font48.fnt" />
+    <None Include="Assets\Resources\XML\LevelConfig.xml" />
     <None Include="Assets\Zenject\LICENSE.txt" />
     <None Include="Assets\Zenject\Version.txt" />
   </ItemGroup>

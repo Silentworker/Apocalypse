@@ -9,6 +9,7 @@ using Assets.Scripts.core.config;
 using Assets.Scripts.core.eventdispatcher;
 using Assets.Scripts.core.settings;
 using Assets.Scripts.model.core;
+using Assets.Scripts.model.level;
 using Assets.Scripts.service;
 using Zenject;
 
@@ -28,6 +29,8 @@ namespace Assets.Scripts
             Container.Bind<ICommandsMap>().To<CommandsMap>().AsSingle();
             Container.Bind<IConfig>().To<CommandsConfig>().AsSingle();
             Container.Bind<ISettingManager>().To<SettingsManager>().AsSingle();
+            Container.Bind<ILevel>().To<LevelModel>().AsSingle();
+
             Container.Bind<ApplicationModel>().AsSingle();
 
             /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~
