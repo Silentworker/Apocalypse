@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.core.eventdispatcher;
 using Assets.Scripts.model.core;
 using Assets.Scripts.view.headsup;
-using Assets.Scripts.view.mobile;
 using UnityEngine;
 using Zenject;
 

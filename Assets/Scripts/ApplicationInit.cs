@@ -15,8 +15,6 @@ namespace Assets.Scripts
         IConfig commandsConfig;
         [Inject]
         ApplicationModel applicationModel;
-        [Inject]
-        ISettingManager settingManager;
 
         void Awake()
         {

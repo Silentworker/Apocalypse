@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using Assets.Scripts.core.eventdispatcher;
 using Assets.Scripts.core.model;
@@ -12,8 +13,6 @@ namespace Assets.Scripts.model.level
     public class LevelModel : Model, ILevel
     {
         private List<WaveModel> _waves = new List<WaveModel>();
-
-
 
         public LevelModel(IEventDispatcher dispatcher, DiContainer container) : base(dispatcher, container)
         {
@@ -71,29 +70,29 @@ namespace Assets.Scripts.model.level
         {
             var zombie = new ZombieModel();
 
-            if (zombieNode.Attributes != null)
-            {
-                if (zombieNode.Attributes[ZombieModel.TypeAttribute] != null)
-                    int.TryParse(zombieNode.Attributes[ZombieModel.TypeAttribute].Value, out zombie.Type);
+            if (zombieNode.Attributes == null) return zombie;
 
-                if (zombieNode.Attributes[ZombieModel.HealthAttribute] != null)
-                    float.TryParse(zombieNode.Attributes[ZombieModel.HealthAttribute].Value, out zombie.Health);
+            if (zombieNode.Attributes[ZombieModel.TypeAttribute] != null)
+                int.TryParse(zombieNode.Attributes[ZombieModel.TypeAttribute].Value, out zombie.Type);
 
-                if (zombieNode.Attributes[ZombieModel.SpeedAttribute] != null)
-                    float.TryParse(zombieNode.Attributes[ZombieModel.SpeedAttribute].Value, out zombie.Speed);
+            if (zombieNode.Attributes[ZombieModel.HealthAttribute] != null)
+                float.TryParse(zombieNode.Attributes[ZombieModel.HealthAttribute].Value, out zombie.Health);
 
-                if (zombieNode.Attributes[ZombieModel.HitDamageAttribute] != null)
-                    int.TryParse(zombieNode.Attributes[ZombieModel.HitDamageAttribute].Value, out zombie.HitDamage);
+            if (zombieNode.Attributes[ZombieModel.SpeedAttribute] != null)
+                float.TryParse(zombieNode.Attributes[ZombieModel.SpeedAttribute].Value, out zombie.Speed);
 
-                if (zombieNode.Attributes[ZombieModel.HitDelayAttribute] != null)
-                    float.TryParse(zombieNode.Attributes[ZombieModel.HitDelayAttribute].Value, out zombie.HitDelay);
+            if (zombieNode.Attributes[ZombieModel.HitDamageAttribute] != null)
+                int.TryParse(zombieNode.Attributes[ZombieModel.HitDamageAttribute].Value, out zombie.HitDamage);
 
-                if (zombieNode.Attributes[ZombieModel.SpawndDelayAttribute] != null)
-                    float.TryParse(zombieNode.Attributes[ZombieModel.SpawndDelayAttribute].Value, out zombie.SpawnDelay);
+            if (zombieNode.Attributes[ZombieModel.HitDelayAttribute] != null)
+                float.TryParse(zombieNode.Attributes[ZombieModel.HitDelayAttribute].Value, out zombie.HitDelay);
 
-                if (zombieNode.Attributes[ZombieModel.SpawndPositionAttribute] != null)
-                    float.TryParse(zombieNode.Attributes[ZombieModel.SpawndPositionAttribute].Value, out zombie.SpawnPosition);
-            }
+            if (zombieNode.Attributes[ZombieModel.SpawndDelayAttribute] != null)
+                float.TryParse(zombieNode.Attributes[ZombieModel.SpawndDelayAttribute].Value, out zombie.SpawnDelay);
+
+            if (zombieNode.Attributes[ZombieModel.SpawndPositionAttribute] != null)
+                float.TryParse(zombieNode.Attributes[ZombieModel.SpawndPositionAttribute].Value, out zombie.SpawnPosition);
+
             return zombie;
         }
 

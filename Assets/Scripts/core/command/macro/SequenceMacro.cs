@@ -50,7 +50,7 @@ namespace Assets.Scripts.core.command.macro
             else
             {
                 Debug.LogErrorFormat("Add incompatible command type: {0}", commandType);
-                throw new SystemException("Add incompatible command type");
+                throw new Exception("Add incompatible command type");
             }
         }
 
@@ -70,7 +70,7 @@ namespace Assets.Scripts.core.command.macro
             else
             {
                 Debug.LogErrorFormat("Remove incompatible command type: {0}", commandType);
-                throw new SystemException("Remove incompatible command type");
+                throw new Exception("Remove incompatible command type");
             }
         }
 

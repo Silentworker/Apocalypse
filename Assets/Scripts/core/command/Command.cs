@@ -9,7 +9,7 @@ namespace Assets.Scripts.core.command
     {
         public virtual void Execute(Object data = null)
         {
-            Debug.LogFormat("[{0}]: execute", GetType().Name);
+            Debug.LogFormat("[{0}][{1}]: execute", Math.Ceiling(Time.time * 1000), GetType().Name);
         }
 
         public void CancelParent()

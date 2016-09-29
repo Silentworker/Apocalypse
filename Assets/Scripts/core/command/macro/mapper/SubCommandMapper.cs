@@ -12,25 +12,33 @@ namespace Assets.Scripts.core.command.macro.mapper
         [Inject]
         DiContainer container;
 
-        private readonly List<ICommand> _asyncCommandsCahe = new List<ICommand>();
-        private Queue<Type> _guardTypes;
+        private readonly HashSet<ICommand> _runtimeStorage = new HashSet<ICommand>();
+        private Queue<Type> _guards;
+        private bool _guardPass = true;
         private Object _data;
 
         public ISubCommandMapper WithGuard(Type guardType)
         {
             if (!typeof(IGuard).IsAssignableFrom(guardType))
             {
-                throw new SystemException("Incompatible guard type");
+                throw new Exception("Incompatible guard type");
             }
 
-            if (_guardTypes == null)
+            if (_guards == null)
             {
-                _guardTypes = new Queue<Type>();
+                _guards = new Queue<Type>();
             }
-            _guardTypes.Enqueue(guardType);
+            _guards.Enqueue(guardType);
 
             return this;
         }
+
+        public ISubCommandMapper WithGuard(bool pass)
+        {
+            _guardPass &= pass;
+            return this;
+        }
+
 
         public ISubCommandMapper WithData(Object data)
         {
@@ -49,7 +57,7 @@ namespace Assets.Scripts.core.command.macro.mapper
 
                 if (command is AsyncCommand)
                 {
-                    _asyncCommandsCahe.Add(command);
+                    _runtimeStorage.Add(command);
                     (command as AsyncCommand).CompleteHandler += CompleteCommandHandler;
                     command.Execute(_data);
                     return;
@@ -63,21 +71,24 @@ namespace Assets.Scripts.core.command.macro.mapper
 
         private void CompleteCommandHandler(ICommand command, bool success)
         {
-            if (_asyncCommandsCahe.Contains(command)) _asyncCommandsCahe.Remove(command);
+            if (_runtimeStorage.Contains(command)) _runtimeStorage.Remove(command);
 
             if (CompleteCallBack != null) CompleteCallBack(success);
         }
 
         private bool GuardsPass()
         {
-            if (_guardTypes != null)
+            if (!_guardPass) return false;
+
+            if (_guards != null)
             {
-                while (_guardTypes.Count > 0)
+                while (_guards.Count > 0)
                 {
-                    IGuard guard = container.Instantiate(_guardTypes.Dequeue()) as IGuard;
+                    var guard = container.Instantiate(_guards.Dequeue()) as IGuard;
                     if (!guard.Let()) return false;
                 }
             }
+
             return true;
         }
 

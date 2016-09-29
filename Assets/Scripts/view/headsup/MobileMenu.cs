@@ -3,7 +3,7 @@ using Assets.Scripts.core.touch;
 using UnityEngine;
 using Zenject;
 
-namespace Assets.Scripts.view.mobile
+namespace Assets.Scripts.view.headsup
 {
     public class MobileMenu : MonoBehaviour
     {

@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.controller.player
 {
-    interface IPlayerController
+    public interface IPlayerController
     {
         void AllowPlayerControll();
 

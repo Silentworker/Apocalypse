@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.controller.headsup
 {
-    interface IHeadsUpController
+    public interface IHeadsUpController
     {
         void ShowMainMenu();
 

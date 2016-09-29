@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Zenject;
 
 public class ZombieBehaviour : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class ZombieBehaviour : MonoBehaviour
 	void Update () {
 	
 	}
-
     public void MoveToTarget()
     {
         

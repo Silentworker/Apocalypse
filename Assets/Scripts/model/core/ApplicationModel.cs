@@ -24,6 +24,8 @@ namespace Assets.Scripts.model.core
         {
             Debug.Log("Application model initiated");
             eventDispatcher.DispatchEvent(GameEvent.ShowMainMenu);
+
+            eventDispatcher.DispatchEvent(GameEvent.Test);
         }
 
         public void PauseGame()
