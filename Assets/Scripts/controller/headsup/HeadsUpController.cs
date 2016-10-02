@@ -52,5 +52,15 @@ namespace Assets.Scripts.controller.headsup
         {
             GetComponent<MobileMenu>().HideControlls();
         }
+
+        public void ShowPauseMenu()
+        {
+            GetComponent<PauseMenu>().ShowMenu();
+        }
+
+        public void HidePauseMenu()
+        {
+            GetComponent<PauseMenu>().HideMenu();
+        }
     }
 }

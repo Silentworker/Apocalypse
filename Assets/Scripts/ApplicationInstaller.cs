@@ -3,6 +3,7 @@ using Assets.Scripts.controller.commands;
 using Assets.Scripts.controller.hatch;
 using Assets.Scripts.controller.headsup;
 using Assets.Scripts.controller.player;
+using Assets.Scripts.controller.sound;
 using Assets.Scripts.core.command.macro.mapper;
 using Assets.Scripts.core.command.map;
 using Assets.Scripts.core.config;
@@ -29,7 +30,8 @@ namespace Assets.Scripts
             Container.Bind<ICommandsMap>().To<CommandsMap>().AsSingle();
             Container.Bind<IConfig>().To<CommandsConfig>().AsSingle();
             Container.Bind<ISettingManager>().To<SettingsManager>().AsSingle();
-            Container.Bind<ILevel>().To<LevelModel>().AsSingle();
+            Container.Bind<ILevelModel>().To<LevelModel>().AsSingle();
+            Container.Bind<ISoundManager>().To<SoundManager>().AsSingle();
 
             Container.Bind<ApplicationModel>().AsSingle();
 

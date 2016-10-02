@@ -10,7 +10,7 @@ namespace Assets.Scripts.model.core
     public class ApplicationModel : Model
     {
         [Inject]
-        ILevel level;
+        ILevelModel levelModel;
 
         private int _score;
         private int _gateHealth;
@@ -51,7 +51,7 @@ namespace Assets.Scripts.model.core
 
         public void StartLevel()
         {
-            level.Start();
+            levelModel.Start();
         }
     }
 }

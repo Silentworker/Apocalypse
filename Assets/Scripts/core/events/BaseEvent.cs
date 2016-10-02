@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Assets.Scripts.core.events
 {
-    public class BaseEvent : UnityEvent<Object>
+    public class BaseEvent : UnityEvent<object>
     {
     }
 }

@@ -10,7 +10,7 @@ using Zenject;
 
 namespace Assets.Scripts.model.level
 {
-    public class LevelModel : Model, ILevel
+    public class LevelModel : Model, ILevelModel
     {
         private List<WaveModel> _waves = new List<WaveModel>();
 

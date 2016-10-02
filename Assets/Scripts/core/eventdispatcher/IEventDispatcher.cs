@@ -8,10 +8,10 @@ namespace Assets.Scripts.core.eventdispatcher
 {
     public interface IEventDispatcher
     {
-        void AddEventListener(string eventType, UnityAction<Object> eventHandler);
+        void AddEventListener(string eventType, UnityAction<object> eventHandler);
 
-        void RemoveEventListener(string eventType, UnityAction<Object> eventHandler);
+        void RemoveEventListener(string eventType, UnityAction<object> eventHandler);
 
-        void DispatchEvent(string eventName, Object data = null);
+        void DispatchEvent(string eventName, object data = null);
     }
 }

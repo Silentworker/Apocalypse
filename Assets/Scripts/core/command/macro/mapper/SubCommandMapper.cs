@@ -15,7 +15,7 @@ namespace Assets.Scripts.core.command.macro.mapper
         private readonly HashSet<ICommand> _runtimeStorage = new HashSet<ICommand>();
         private Queue<Type> _guards;
         private bool _guardPass = true;
-        private Object _data;
+        private object _data;
 
         public ISubCommandMapper WithGuard(Type guardType)
         {
@@ -40,13 +40,13 @@ namespace Assets.Scripts.core.command.macro.mapper
         }
 
 
-        public ISubCommandMapper WithData(Object data)
+        public ISubCommandMapper WithData(object data)
         {
             _data = data;
             return this;
         }
 
-        public void Execute(Object data = null)
+        public void Execute(object data = null)
         {
             if (GuardsPass())
             {

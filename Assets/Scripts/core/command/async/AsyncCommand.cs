@@ -8,7 +8,7 @@ namespace Assets.Scripts.core.command.async
     {
         public CustomDelegate.CommandCompete CompleteHandler;
 
-        public override void Execute(Object data = null)
+        public override void Execute(object data = null)
         {
             base.Execute();
         }

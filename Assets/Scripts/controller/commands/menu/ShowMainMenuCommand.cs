@@ -13,7 +13,7 @@ namespace Assets.Scripts.controller.commands.menu
         [Inject]
         private IHeadsUpController heasUpController;
 
-        public override void Execute(Object data = null)
+        public override void Execute(object data = null)
         {
             base.Execute();
 

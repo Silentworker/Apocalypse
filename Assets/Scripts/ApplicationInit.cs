@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.core.config;
+﻿using Assets.Scripts.controller.sound;
+using Assets.Scripts.core.config;
 using Assets.Scripts.core.eventdispatcher;
 using Assets.Scripts.core.settings;
 using Assets.Scripts.model.core;
@@ -15,6 +16,8 @@ namespace Assets.Scripts
         IConfig commandsConfig;
         [Inject]
         ApplicationModel applicationModel;
+        [Inject]
+        ISoundManager soundManager;
 
         void Awake()
         {
@@ -23,6 +26,8 @@ namespace Assets.Scripts
             commandsConfig.Init();
 
             applicationModel.Init();
+
+            soundManager.Init();
         }
     }
 }

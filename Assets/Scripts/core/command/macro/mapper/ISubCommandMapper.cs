@@ -1,16 +1,17 @@
 ﻿using System;
 using Assets.Scripts.core.delegates;
-using Object = UnityEngine.Object;
 
 namespace Assets.Scripts.core.command.macro.mapper
 {
     public interface ISubCommandMapper
     {
-        void Execute(Object data = null);
+        void Execute(object data = null);
 
         ISubCommandMapper WithGuard(Type guardType);
 
-        ISubCommandMapper WithData(Object data);
+        ISubCommandMapper WithGuard(bool pass);
+
+        ISubCommandMapper WithData(object data);
 
         Type CommandType { get; set; }
 

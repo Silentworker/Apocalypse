@@ -1,15 +1,23 @@
-﻿using Assets.Scripts.core.command;
+﻿using Assets.Scripts.controller.headsup;
 using UnityEngine;
+using Zenject;
+using Command = Assets.Scripts.core.command.Command;
 
 namespace Assets.Scripts.controller.commands.pause
 {
     public class ResumeGameCommand : Command
     {
-        public override void Execute(Object data = null)
+        [Inject]
+        IHeadsUpController headsUpController;
+
+        public override void Execute(object data = null)
         {
             base.Execute();
 
             Time.timeScale = 1;
+
+            headsUpController.HidePauseMenu();
+            headsUpController.ShowMobileMenu();
         }
     }
 }

@@ -9,5 +9,9 @@
         void ShowMobileMenu();
 
         void HideMobileMenu();
+
+        void ShowPauseMenu();
+
+        void HidePauseMenu();
     }
 }

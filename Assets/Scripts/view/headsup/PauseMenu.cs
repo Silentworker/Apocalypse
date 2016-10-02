@@ -1,9 +1,17 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.controller.events;
+using Assets.Scripts.core.eventdispatcher;
+using Assets.Scripts.core.touch;
+using UnityEngine;
+using UnityEngine.UI;
+using Zenject;
 
 namespace Assets.Scripts.view.headsup
 {
     public class PauseMenu : MonoBehaviour
     {
+        [Inject]
+        IEventDispatcher eventDispatcher;
+
         public GameObject PauseMenuBgPrefab;
         public GameObject ToMainMenuButtonPrefab;
         public GameObject MusicSliderPrefab;
@@ -16,12 +24,52 @@ namespace Assets.Scripts.view.headsup
 
         public void ShowMenu()
         {
+            _pauseMenuBg = Instantiate(PauseMenuBgPrefab);
+            _pauseMenuBg.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
 
+            _toMainMenuButton = Instantiate(ToMainMenuButtonPrefab);
+            _toMainMenuButton.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
+            _toMainMenuButton.GetComponent<Toucher>().OnTouchDownHandler += ToMainMenu;
+
+            _musicSlider = Instantiate(MusicSliderPrefab);
+            _musicSlider.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
+            _musicSlider.GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMusicSliderValueChanged(); });
+
+            _soundSlider = Instantiate(SoundSliderPrefab);
+            _soundSlider.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
+            _soundSlider.GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSoundSliderValueChanged(); });
+
+            Debug.Log("Show pause menu");
         }
 
         public void HideMenu()
         {
+            if (_toMainMenuButton != null) _toMainMenuButton.GetComponent<Toucher>().Clear();
+            if (_soundSlider != null) _soundSlider.GetComponent<Slider>().onValueChanged.RemoveAllListeners();
+            if (_musicSlider != null) _musicSlider.GetComponent<Slider>().onValueChanged.RemoveAllListeners();
 
+            Destroy(_pauseMenuBg);
+            Destroy(_toMainMenuButton);
+            Destroy(_musicSlider);
+            Destroy(_soundSlider);
+
+            Debug.Log("Hide pause menu");
+        }
+
+        private void ToMainMenu()
+        {
+            HideMenu();
+            eventDispatcher.DispatchEvent(GameEvent.ShowMainMenu);
+        }
+
+        private void OnMusicSliderValueChanged()
+        {
+            eventDispatcher.DispatchEvent(SettingEvent.MusicVolumeChange, (int)_musicSlider.GetComponent<Slider>().value);
+        }
+
+        private void OnSoundSliderValueChanged()
+        {
+            eventDispatcher.DispatchEvent(SettingEvent.SoundVolumeChange, (int)_soundSlider.GetComponent<Slider>().value);
         }
     }
 }

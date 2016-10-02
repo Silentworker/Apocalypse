@@ -56,10 +56,5 @@ namespace Assets.Scripts.view.headsup
             Destroy(_fireCannonButton);
             Destroy(_fireMachineGunButton);
         }
-
-        void OnDestroy()
-        {
-            HideControlls();
-        }
     }
 }

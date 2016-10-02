@@ -2,7 +2,6 @@
 using Assets.Scripts.core.eventdispatcher;
 using Assets.Scripts.core.touch;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace Assets.Scripts.view.headsup

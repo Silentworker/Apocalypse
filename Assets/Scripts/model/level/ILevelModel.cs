@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets.Scripts.model.level
 {
-    public interface ILevel
+    public interface ILevelModel
     {
         void Start();
 

@@ -23,7 +23,7 @@ namespace Assets.Scripts.core.command.macro
             Atomic = true;
         }
 
-        public override void Execute(Object data = null)
+        public override void Execute(object data = null)
         {
             base.Execute();
 

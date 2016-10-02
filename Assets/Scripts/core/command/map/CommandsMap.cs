@@ -45,7 +45,7 @@ namespace Assets.Scripts.core.command.map
             }
         }
 
-        public void DirectCommand(Type commandType, Object data = null)
+        public void DirectCommand(Type commandType, object data = null)
         {
             if (!IsCommandType(commandType))
             {

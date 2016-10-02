@@ -9,7 +9,7 @@ namespace Assets.Scripts.core.eventdispatcher
     {
         private readonly Dictionary<string, BaseEvent> _eventDictionary = new Dictionary<string, BaseEvent>();
 
-        public void AddEventListener(string eventType, UnityAction<Object> eventHandler)
+        public void AddEventListener(string eventType, UnityAction<object> eventHandler)
         {
             BaseEvent baseEvent = null;
             if (_eventDictionary.TryGetValue(eventType, out baseEvent))
@@ -24,7 +24,7 @@ namespace Assets.Scripts.core.eventdispatcher
             }
         }
 
-        public void RemoveEventListener(string eventType, UnityAction<Object> eventHandler)
+        public void RemoveEventListener(string eventType, UnityAction<object> eventHandler)
         {
             BaseEvent baseEvent = null;
             if (_eventDictionary.TryGetValue(eventType, out baseEvent))
@@ -33,7 +33,7 @@ namespace Assets.Scripts.core.eventdispatcher
             }
         }
 
-        public void DispatchEvent(string eventName, Object data = null)
+        public void DispatchEvent(string eventName, object data = null)
         {
             BaseEvent baseEvent = null;
             if (_eventDictionary.TryGetValue(eventName, out baseEvent))

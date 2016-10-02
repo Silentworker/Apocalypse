@@ -10,6 +10,6 @@ namespace Assets.Scripts.core.command.map
 
         void UnMap(string eventType, Type commandType);
 
-        void DirectCommand(Type commandType, Object data = null);
+        void DirectCommand(Type commandType, object data = null);
     }
 }

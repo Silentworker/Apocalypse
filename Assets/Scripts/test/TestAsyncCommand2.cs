@@ -11,13 +11,13 @@ namespace Assets.Scripts.test
         [Inject]
         IEventDispatcher eventDispatcher;
 
-        public override void Execute(Object data = null)
+        public override void Execute(object data = null)
         {
             eventDispatcher.AddEventListener(GameEvent.StartGame, OnStartGame);
             base.Execute();
         }
 
-        void OnStartGame(Object data = null)
+        void OnStartGame(object data = null)
         {
             eventDispatcher.RemoveEventListener(GameEvent.StartGame, OnStartGame);
             DispatchComplete(false);

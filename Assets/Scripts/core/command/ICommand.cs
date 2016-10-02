@@ -4,6 +4,6 @@ namespace Assets.Scripts.core.command
 {
     public interface ICommand
     {
-        void Execute(Object data = null);
+        void Execute(object data = null);
     }
 }
