@@ -78,8 +78,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\controller\events\SettingEvent.cs" />
-    <Compile Include="Assets\Scripts\controller\sound\ISoundManager.cs" />
-    <Compile Include="Assets\Scripts\controller\sound\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\controller\settings\ISettingManager.cs" />
+    <Compile Include="Assets\Scripts\controller\settings\SettingItem.cs" />
+    <Compile Include="Assets\Scripts\controller\settings\SettingManager.cs" />
+    <Compile Include="Assets\Scripts\controller\settings\SettingName.cs" />
     <Compile Include="Assets\Scripts\view\headsup\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\ApplicationInit.cs" />
     <Compile Include="Assets\Scripts\ApplicationInstaller.cs" />
@@ -118,9 +120,6 @@
     <Compile Include="Assets\Scripts\core\eventdispatcher\IEventDispatcher.cs" />
     <Compile Include="Assets\Scripts\core\events\BaseEvent.cs" />
     <Compile Include="Assets\Scripts\core\model\Model.cs" />
-    <Compile Include="Assets\Scripts\core\settings\AbstractSettingManager.cs" />
-    <Compile Include="Assets\Scripts\core\settings\ISettingManager.cs" />
-    <Compile Include="Assets\Scripts\core\settings\SettingConfig.cs" />
     <Compile Include="Assets\Scripts\core\touch\Toucher.cs" />
     <Compile Include="Assets\Scripts\model\core\ApplicationModel.cs" />
     <Compile Include="Assets\Scripts\model\level\ILevelModel.cs" />
@@ -128,7 +127,6 @@
     <Compile Include="Assets\Scripts\model\level\wave\AwardModel.cs" />
     <Compile Include="Assets\Scripts\model\level\wave\WaveModel.cs" />
     <Compile Include="Assets\Scripts\model\level\wave\ZombieModel.cs" />
-    <Compile Include="Assets\Scripts\service\SettingsManager.cs" />
     <Compile Include="Assets\Scripts\test\TestAsyncCommand1.cs" />
     <Compile Include="Assets\Scripts\test\TestAsyncCommand2.cs" />
     <Compile Include="Assets\Scripts\test\TestAsyncCommand3.cs" />

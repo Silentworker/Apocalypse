@@ -1,10 +1,10 @@
 ﻿using Assets.Scripts.controller.sound;
 using Assets.Scripts.core.config;
 using Assets.Scripts.core.eventdispatcher;
-using Assets.Scripts.core.settings;
 using Assets.Scripts.model.core;
 using UnityEngine;
 using Zenject;
+using ISettingManager = Assets.Scripts.controller.sound.ISettingManager;
 
 namespace Assets.Scripts
 {
@@ -17,7 +17,7 @@ namespace Assets.Scripts
         [Inject]
         ApplicationModel applicationModel;
         [Inject]
-        ISoundManager soundManager;
+        ISettingManager settingManager;
 
         void Awake()
         {
@@ -27,7 +27,7 @@ namespace Assets.Scripts
 
             applicationModel.Init();
 
-            soundManager.Init();
+            settingManager.Init();
         }
     }
 }

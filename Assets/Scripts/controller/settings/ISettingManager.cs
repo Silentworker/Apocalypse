@@ -1,11 +1,11 @@
-﻿namespace Assets.Scripts.core.settings
+﻿namespace Assets.Scripts.controller.sound
 {
     public interface ISettingManager
     {
         void Init();
 
-        void SetSetting(string settingName, object value);
-
         object GetSetting(string settingName);
+
+        void SetSetting(string settingName, object settingValue);
     }
 }

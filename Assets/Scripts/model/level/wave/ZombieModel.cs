@@ -2,6 +2,7 @@
 
 namespace Assets.Scripts.model.level.wave
 {
+    [Serializable]
     public class ZombieModel
     {
         // region: for XML parse

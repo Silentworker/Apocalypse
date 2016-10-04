@@ -52,8 +52,8 @@ namespace Assets.Scripts.core.command.macro.mapper
             {
                 if (data != null) _data = data;
 
-                var command = container.Instantiate(CommandType) as ICommand;
-                (command as ISubCommand).CalcelParentCallback = CancelParentCallback;
+                var command = container.Instantiate(CommandType) as Command;
+                command.CalcelParentCallback = CancelParentCallback;
 
                 if (command is AsyncCommand)
                 {

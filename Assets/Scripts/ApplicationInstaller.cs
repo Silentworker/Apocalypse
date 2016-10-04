@@ -3,16 +3,15 @@ using Assets.Scripts.controller.commands;
 using Assets.Scripts.controller.hatch;
 using Assets.Scripts.controller.headsup;
 using Assets.Scripts.controller.player;
-using Assets.Scripts.controller.sound;
+using Assets.Scripts.controller.settings;
 using Assets.Scripts.core.command.macro.mapper;
 using Assets.Scripts.core.command.map;
 using Assets.Scripts.core.config;
 using Assets.Scripts.core.eventdispatcher;
-using Assets.Scripts.core.settings;
 using Assets.Scripts.model.core;
 using Assets.Scripts.model.level;
-using Assets.Scripts.service;
 using Zenject;
+using ISettingManager = Assets.Scripts.controller.sound.ISettingManager;
 
 namespace Assets.Scripts
 {
@@ -29,9 +28,8 @@ namespace Assets.Scripts
             Container.Bind<ISubCommandMapper>().To<SubCommandMapper>();
             Container.Bind<ICommandsMap>().To<CommandsMap>().AsSingle();
             Container.Bind<IConfig>().To<CommandsConfig>().AsSingle();
-            Container.Bind<ISettingManager>().To<SettingsManager>().AsSingle();
             Container.Bind<ILevelModel>().To<LevelModel>().AsSingle();
-            Container.Bind<ISoundManager>().To<SoundManager>().AsSingle();
+            Container.Bind<ISettingManager>().To<SettingManager>().AsSingle();
 
             Container.Bind<ApplicationModel>().AsSingle();
 
