@@ -14,10 +14,10 @@ namespace Assets.Scripts.model.core
 
         private int _score;
         private int _gateHealth;
-        private bool _gamePaused = false;
 
         public ApplicationModel(IEventDispatcher dispatcher, DiContainer container) : base(dispatcher, container)
         {
+            GamePaused = false;
         }
 
         public void Init()
@@ -30,28 +30,25 @@ namespace Assets.Scripts.model.core
 
         public void PauseGame()
         {
-            if (_gamePaused) return;
+            if (GamePaused) return;
 
-            _gamePaused = true;
+            GamePaused = true;
             eventDispatcher.DispatchEvent(GameEvent.PauseGame);
         }
 
         public void ResumeGame()
         {
-            if (!_gamePaused) return;
+            if (!GamePaused) return;
 
-            _gamePaused = false;
+            GamePaused = false;
             eventDispatcher.DispatchEvent(GameEvent.ResumeGame);
-        }
-
-        public bool GamePaused
-        {
-            get { return _gamePaused; }
         }
 
         public void StartLevel()
         {
             levelModel.Start();
         }
+
+        public bool GamePaused { get; private set; }
     }
 }

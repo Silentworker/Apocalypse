@@ -4,28 +4,24 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using Assets.Scripts.controller.sound;
 using Assets.Scripts.core.eventdispatcher;
-using Assets.Scripts.model.level.wave;
 using UnityEngine;
 using Zenject;
 
 namespace Assets.Scripts.controller.settings
+
 {
     public class SettingManager : ISettingManager
     {
-        private static readonly string StorageFileName = "";
-
         [Inject]
         IEventDispatcher eventDispatcher;
 
         private readonly Dictionary<string, SettingItem> _settingDictionary = new Dictionary<string, SettingItem>();
         private BinaryFormatter _formatter;
 
-
         public void Init()
         {
-            InitSetting(SettingName.SoundVolume, typeof(int), 5);
-            InitSetting(SettingName.MusicVolume, typeof(int), 12);
-            InitSetting("Zombie", typeof(ZombieModel), new ZombieModel() { Health = 50, HitDamage = 10, HitDelay = 3, SpawnDelay = 2, SpawnPosition = 0, Speed = 5, Type = 1 });
+            InitSetting(SettingName.SoundVolume, typeof(int), 10);
+            InitSetting(SettingName.MusicVolume, typeof(int), 10);
 
             _formatter = new BinaryFormatter();
 
@@ -39,63 +35,69 @@ namespace Assets.Scripts.controller.settings
                 var name = pair.Key;
                 var item = pair.Value;
 
-                if (item.ValueType == typeof(int))
+                if (PlayerPrefs.HasKey(name))
                 {
-                    if (PlayerPrefs.HasKey(name))
-                    {
-                        item.CurrentValue = PlayerPrefs.GetInt(name);
-                    }
-                    else
-                    {
-                        PlayerPrefs.SetInt(name, (int)item.CurrentValue);
-                    }
-                }
-                else if (item.ValueType == typeof(float))
-                {
-                    if (PlayerPrefs.HasKey(name))
-                    {
-                        item.CurrentValue = PlayerPrefs.GetFloat(name);
-                    }
-                    else
-                    {
-                        PlayerPrefs.SetFloat(name, (float)item.CurrentValue);
-                    }
-                }
-                else if (item.ValueType == typeof(string))
-                {
-                    if (PlayerPrefs.HasKey(name))
-                    {
-                        item.CurrentValue = PlayerPrefs.GetString(name);
-                    }
-                    else
-                    {
-                        PlayerPrefs.SetString(name, (string)item.CurrentValue);
-                    }
+                    LoadSettingFromPlayerPrefs(name, item);
                 }
                 else
                 {
-                    if (PlayerPrefs.HasKey(name))
-                    {
-                        var base64 = PlayerPrefs.GetString(name);
-                        var bytes = Convert.FromBase64String(base64);
-                        using (var stream = new MemoryStream(bytes))
-                        {
-                            item.CurrentValue = _formatter.Deserialize(stream);
-                        }
-                        item.CurrentValue = Convert.ChangeType(item.CurrentValue, item.ValueType);
-                    }
-                    else
-                    {
-                        using (var stream = new MemoryStream())
-                        {
-                            _formatter.Serialize(stream, pair.Value.CurrentValue);
-                            var bytes = stream.ToArray();
-                            PlayerPrefs.SetString(pair.Key, Convert.ToBase64String(bytes));
-                        }
-                    }
+                    SaveSettingToPlayerPrefs(name, item);
+                }
+            }
+        }
+
+        private void LoadSettingFromPlayerPrefs(string name, SettingItem item)
+        {
+            if (item.ValueType == typeof(int))
+            {
+                item.CurrentValue = PlayerPrefs.GetInt(name);
+            }
+            else if (item.ValueType == typeof(float))
+            {
+                item.CurrentValue = PlayerPrefs.GetFloat(name);
+            }
+            else if (item.ValueType == typeof(string))
+            {
+                item.CurrentValue = PlayerPrefs.GetString(name);
+            }
+            else
+            {
+                var base64 = PlayerPrefs.GetString(name);
+                var bytes = Convert.FromBase64String(base64);
+                using (var stream = new MemoryStream(bytes))
+                {
+                    item.CurrentValue = _formatter.Deserialize(stream);
+                }
+                item.CurrentValue = Convert.ChangeType(item.CurrentValue, item.ValueType);
+            }
+            Debug.LogFormat("Load setting [{0}] from PlayerPrefs", name);
+        }
+
+        private void SaveSettingToPlayerPrefs(string name, SettingItem item)
+        {
+            if (item.ValueType == typeof(int))
+            {
+                PlayerPrefs.SetInt(name, (int)item.CurrentValue);
+            }
+            else if (item.ValueType == typeof(float))
+            {
+                PlayerPrefs.SetFloat(name, (float)item.CurrentValue);
+            }
+            else if (item.ValueType == typeof(string))
+            {
+                PlayerPrefs.SetString(name, (string)item.CurrentValue);
+            }
+            else
+            {
+                using (var stream = new MemoryStream())
+                {
+                    _formatter.Serialize(stream, item.CurrentValue);
+                    var bytes = stream.ToArray();
+                    PlayerPrefs.SetString(name, Convert.ToBase64String(bytes));
                 }
             }
             PlayerPrefs.Save();
+            Debug.LogFormat("Save setting [{0}] to PlayerPrefs", name);
         }
 
         private void InitSetting(string name, Type valueType, object defaultValue)
@@ -106,7 +108,6 @@ namespace Assets.Scripts.controller.settings
                 DefaultValue = defaultValue,
                 CurrentValue = defaultValue
             });
-
             Debug.LogFormat("Setting {0} inited. Type: {1}", name, valueType);
         }
 
@@ -116,22 +117,26 @@ namespace Assets.Scripts.controller.settings
             return _settingDictionary.TryGetValue(settingName, out item) ? item.CurrentValue : null;
         }
 
-        public void SetSetting(string settingName, object settingValue)
+        public void SetSetting(string name, object settingValue)
         {
             SettingItem item;
-
-            if (_settingDictionary.TryGetValue(settingName, out item))
+            if (_settingDictionary.TryGetValue(name, out item))
             {
-                if (item.CurrentValue != settingValue)
-                {
-                    item.CurrentValue = settingValue;
-                }
+                if (item.CurrentValue == settingValue) return;
+                item.CurrentValue = settingValue;
+                SaveSettingToPlayerPrefs(name, item);
             }
             else
             {
-                Debug.LogErrorFormat("Setting [{0}] is not inited", settingName);
+                Debug.LogErrorFormat("Setting [{0}] is not inited", name);
                 throw new Exception("Wrong setting type");
             }
+        }
+
+        private void ClearSettings()
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
         }
     }
 }

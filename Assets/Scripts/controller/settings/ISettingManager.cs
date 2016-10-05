@@ -6,6 +6,6 @@
 
         object GetSetting(string settingName);
 
-        void SetSetting(string settingName, object settingValue);
+        void SetSetting(string name, object settingValue);
     }
 }

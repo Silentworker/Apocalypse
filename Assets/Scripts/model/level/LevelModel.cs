@@ -21,8 +21,6 @@ namespace Assets.Scripts.model.level
             xml.LoadXml(textAsset.text);
             XmlNode root = xml.DocumentElement;
 
-            Debug.LogFormat("Root name: {0}", root.LocalName);
-
             XmlNodeList waveList = root.SelectNodes("wave");
 
             if (waveList != null)

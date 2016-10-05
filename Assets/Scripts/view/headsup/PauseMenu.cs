@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.controller.events;
+using Assets.Scripts.controller.settings;
+using Assets.Scripts.controller.sound;
 using Assets.Scripts.core.eventdispatcher;
 using Assets.Scripts.core.touch;
 using UnityEngine;
@@ -11,6 +13,8 @@ namespace Assets.Scripts.view.headsup
     {
         [Inject]
         IEventDispatcher eventDispatcher;
+        [Inject]
+        ISettingManager settingManager;
 
         public GameObject PauseMenuBgPrefab;
         public GameObject ToMainMenuButtonPrefab;
@@ -34,10 +38,12 @@ namespace Assets.Scripts.view.headsup
             _musicSlider = Instantiate(MusicSliderPrefab);
             _musicSlider.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
             _musicSlider.GetComponent<Slider>().onValueChanged.AddListener(delegate { OnMusicSliderValueChanged(); });
+            _musicSlider.GetComponent<Slider>().value = (int)settingManager.GetSetting(SettingName.MusicVolume);
 
             _soundSlider = Instantiate(SoundSliderPrefab);
             _soundSlider.GetComponent<RectTransform>().SetParent(gameObject.GetComponent<RectTransform>(), false);
             _soundSlider.GetComponent<Slider>().onValueChanged.AddListener(delegate { OnSoundSliderValueChanged(); });
+            _soundSlider.GetComponent<Slider>().value = (int)settingManager.GetSetting(SettingName.SoundVolume);
 
             Debug.Log("Show pause menu");
         }
@@ -64,12 +70,12 @@ namespace Assets.Scripts.view.headsup
 
         private void OnMusicSliderValueChanged()
         {
-            eventDispatcher.DispatchEvent(SettingEvent.MusicVolumeChange, (int)_musicSlider.GetComponent<Slider>().value);
+            settingManager.SetSetting(SettingName.MusicVolume, (int)_musicSlider.GetComponent<Slider>().value);
         }
 
         private void OnSoundSliderValueChanged()
         {
-            eventDispatcher.DispatchEvent(SettingEvent.SoundVolumeChange, (int)_soundSlider.GetComponent<Slider>().value);
+            settingManager.SetSetting(SettingName.SoundVolume, (int)_soundSlider.GetComponent<Slider>().value);
         }
     }
 }
