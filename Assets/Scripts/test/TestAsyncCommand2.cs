@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.controller.events;
-using Assets.Scripts.core.command.async;
-using Assets.Scripts.core.eventdispatcher;
+using Assets.Scripts.sw.core.command.async;
+using Assets.Scripts.sw.core.eventdispatcher;
 using UnityEngine;
 using Zenject;
 

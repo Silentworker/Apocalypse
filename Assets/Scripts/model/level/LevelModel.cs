@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using Assets.Scripts.core.eventdispatcher;
-using Assets.Scripts.core.model;
+using Assets.Scripts.controller.events;
 using Assets.Scripts.model.level.wave;
+using Assets.Scripts.sw.core.eventdispatcher;
+using Assets.Scripts.sw.core.model;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +14,7 @@ namespace Assets.Scripts.model.level
     public class LevelModel : Model, ILevelModel
     {
         private List<WaveModel> _waves = new List<WaveModel>();
+        private WaveModel _currentWave;
 
         public LevelModel(IEventDispatcher dispatcher, DiContainer container) : base(dispatcher, container)
         {
@@ -43,6 +45,12 @@ namespace Assets.Scripts.model.level
             wave.Award = award;
 
             XmlNodeList awardList = node.SelectNodes("award");
+
+
+            if (node.Attributes["id"] != null)
+            {
+                int.TryParse(node.Attributes["id"].Value, out wave.Id);
+            }
 
             if (awardList != null && awardList[0].Attributes != null)
             {
@@ -96,8 +104,30 @@ namespace Assets.Scripts.model.level
 
         public void Start()
         {
-
+            
         }
+
+        private void StartNextWave()
+        {
+            if (_currentWave == null)
+            {
+                _currentWave = _waves[0];
+            }
+            else
+            {
+                int currentWaveIndex = _waves.IndexOf(_currentWave);
+
+                if (++currentWaveIndex < (_waves.Count - 1))
+                {
+                    _currentWave = _waves[currentWaveIndex];
+                }
+            }
+
+            if (_currentWave == null) return;
+
+            eventDispatcher.DispatchEvent(GameEvent.StartWave, _currentWave);
+        }
+
 
         public void Reset()
         {

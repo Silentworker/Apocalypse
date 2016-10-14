@@ -4,14 +4,15 @@ using Assets.Scripts.controller.hatch;
 using Assets.Scripts.controller.headsup;
 using Assets.Scripts.controller.player;
 using Assets.Scripts.controller.settings;
-using Assets.Scripts.core.command.macro.mapper;
-using Assets.Scripts.core.command.map;
-using Assets.Scripts.core.config;
-using Assets.Scripts.core.eventdispatcher;
+using Assets.Scripts.controller.zombie;
 using Assets.Scripts.model.core;
 using Assets.Scripts.model.level;
+using Assets.Scripts.sw.core.command.macro.mapper;
+using Assets.Scripts.sw.core.command.map;
+using Assets.Scripts.sw.core.config;
+using Assets.Scripts.sw.core.eventdispatcher;
+using Assets.Scripts.sw.core.settings;
 using Zenject;
-using ISettingManager = Assets.Scripts.controller.sound.ISettingManager;
 
 namespace Assets.Scripts
 {
@@ -24,12 +25,13 @@ namespace Assets.Scripts
 
         public override void InstallBindings()
         {
-            Container.Bind<IEventDispatcher>().To<EventDispatcher>().AsSingle();
+            Container.Bind<IEventDispatcher>().To<EventDispatcher>().AsSingle().NonLazy();
             Container.Bind<ISubCommandMapper>().To<SubCommandMapper>();
             Container.Bind<ICommandsMap>().To<CommandsMap>().AsSingle();
             Container.Bind<IConfig>().To<CommandsConfig>().AsSingle();
             Container.Bind<ILevelModel>().To<LevelModel>().AsSingle();
-            Container.Bind<ISettingManager>().To<SettingManager>().AsSingle();
+            Container.Bind<ISettingsManager>().To<SettingsManager>().AsSingle().NonLazy();
+            Container.Bind<IZombieFactory>().To<ZombieFactory>().AsSingle();
 
             Container.Bind<ApplicationModel>().AsSingle();
 

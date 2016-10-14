@@ -1,24 +1,20 @@
-﻿using Assets.Scripts.controller.sound;
-using Assets.Scripts.core.config;
-using Assets.Scripts.core.eventdispatcher;
+﻿using Assets.Scripts.controller.settings;
 using Assets.Scripts.model.core;
+using Assets.Scripts.sw.core.config;
+using Assets.Scripts.sw.core.eventdispatcher;
+using Assets.Scripts.sw.core.settings;
 using UnityEngine;
 using Zenject;
-using ISettingManager = Assets.Scripts.controller.sound.ISettingManager;
 
 namespace Assets.Scripts
 {
     public class ApplicationInit : MonoBehaviour
     {
         [Inject]
-        IEventDispatcher eventDispatcher;
+        private IConfig commandsConfig;
         [Inject]
-        IConfig commandsConfig;
-        [Inject]
-        ApplicationModel applicationModel;
-        [Inject]
-        ISettingManager settingManager;
-
+        private ApplicationModel applicationModel;
+       
         void Awake()
         {
             Application.targetFrameRate = 60;
@@ -26,8 +22,6 @@ namespace Assets.Scripts
             commandsConfig.Init();
 
             applicationModel.Init();
-
-            settingManager.Init();
         }
     }
 }

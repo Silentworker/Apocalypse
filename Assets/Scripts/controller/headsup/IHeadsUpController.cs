@@ -13,5 +13,7 @@
         void ShowPauseMenu();
 
         void HidePauseMenu();
+
+        void ShowPrompt(string promo);
     }
 }

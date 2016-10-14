@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.core.command.macro.mapper;
+﻿using Assets.Scripts.sw.core.command.macro.mapper;
 
 namespace Assets.Scripts.test
 {

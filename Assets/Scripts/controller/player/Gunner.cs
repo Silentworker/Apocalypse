@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.core.delegates;
+﻿using Assets.Scripts.sw.core.delegates;
 using UnityEngine;
 
 namespace Assets.Scripts.controller.player
@@ -63,7 +63,6 @@ namespace Assets.Scripts.controller.player
         public void FireCannon()
         {
             MainGun.GetComponent<AudioSource>().Play();
-            
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿namespace Assets.Scripts.controller.settings
-
 {
     public class SettingName
     {

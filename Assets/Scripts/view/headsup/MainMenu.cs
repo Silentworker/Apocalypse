@@ -1,6 +1,6 @@
 ﻿using Assets.Scripts.controller.events;
-using Assets.Scripts.core.eventdispatcher;
-using Assets.Scripts.core.touch;
+using Assets.Scripts.sw.core.eventdispatcher;
+using Assets.Scripts.sw.core.touch;
 using UnityEngine;
 using Zenject;
 

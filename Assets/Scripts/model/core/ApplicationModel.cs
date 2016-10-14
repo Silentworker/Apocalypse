@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.controller.events;
-using Assets.Scripts.core.eventdispatcher;
-using Assets.Scripts.core.model;
 using Assets.Scripts.model.level;
+using Assets.Scripts.sw.core.eventdispatcher;
+using Assets.Scripts.sw.core.model;
 using UnityEngine;
 using Zenject;
 
@@ -24,8 +24,6 @@ namespace Assets.Scripts.model.core
         {
             Debug.Log("Application model initiated");
             eventDispatcher.DispatchEvent(GameEvent.ShowMainMenu);
-
-            eventDispatcher.DispatchEvent(GameEvent.Test);
         }
 
         public void PauseGame()

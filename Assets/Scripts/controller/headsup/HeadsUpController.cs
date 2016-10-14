@@ -1,5 +1,5 @@
-﻿using Assets.Scripts.core.eventdispatcher;
-using Assets.Scripts.model.core;
+﻿using Assets.Scripts.model.core;
+using Assets.Scripts.sw.core.eventdispatcher;
 using Assets.Scripts.view.headsup;
 using UnityEngine;
 using Zenject;
@@ -12,6 +12,10 @@ namespace Assets.Scripts.controller.headsup
         IEventDispatcher eventDispatcher;
         [Inject]
         ApplicationModel applicationModel;
+
+        private MainMenu _mainMenu;
+        private MobileMenu _mobileMenu;
+        private PauseMenu _pauseMenu;
 
         void Update()
         {
@@ -35,32 +39,52 @@ namespace Assets.Scripts.controller.headsup
 
         public void ShowMainMenu()
         {
-            GetComponent<MainMenu>().ShowMenu();
+            mainMenu.ShowMenu();
         }
 
         public void HideMainMenu()
         {
-            GetComponent<MainMenu>().HideMenu();
+            mainMenu.HideMenu();
         }
 
         public void ShowMobileMenu()
         {
-            GetComponent<MobileMenu>().ShowControlls();
+            mobileMenu.ShowControlls();
         }
 
         public void HideMobileMenu()
         {
-            GetComponent<MobileMenu>().HideControlls();
+            mobileMenu.HideControlls();
         }
 
         public void ShowPauseMenu()
         {
-            GetComponent<PauseMenu>().ShowMenu();
+            pauseMenu.ShowMenu();
         }
 
         public void HidePauseMenu()
         {
-            GetComponent<PauseMenu>().HideMenu();
+            pauseMenu.HideMenu();
+        }
+
+        public void ShowPrompt(string promo)
+        {
+
+        }
+
+        private MainMenu mainMenu
+        {
+            get { return _mainMenu ?? (_mainMenu = GetComponent<MainMenu>()); }
+        }
+
+        private MobileMenu mobileMenu
+        {
+            get { return _mobileMenu ?? (_mobileMenu = GetComponent<MobileMenu>()); }
+        }
+
+        private PauseMenu pauseMenu
+        {
+            get { return _pauseMenu ?? (_pauseMenu = GetComponent<PauseMenu>()); }
         }
     }
 }

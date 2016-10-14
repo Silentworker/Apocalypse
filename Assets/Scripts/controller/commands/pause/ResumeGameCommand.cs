@@ -1,11 +1,11 @@
 ﻿using Assets.Scripts.controller.headsup;
 using UnityEngine;
 using Zenject;
-using Command = Assets.Scripts.core.command.Command;
+using Command = Assets.Scripts.sw.core.command.Command;
 
 namespace Assets.Scripts.controller.commands.pause
 {
-    public class ResumeGameCommand : Command
+    public class ResumeGameCommand : sw.core.command.Command
     {
         [Inject]
         IHeadsUpController headsUpController;

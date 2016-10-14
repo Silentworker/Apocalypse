@@ -77,12 +77,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\controller\events\SettingEvent.cs" />
-    <Compile Include="Assets\Scripts\controller\settings\ISettingManager.cs" />
-    <Compile Include="Assets\Scripts\controller\settings\SettingItem.cs" />
-    <Compile Include="Assets\Scripts\controller\settings\SettingManager.cs" />
-    <Compile Include="Assets\Scripts\controller\settings\SettingName.cs" />
-    <Compile Include="Assets\Scripts\view\headsup\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\ApplicationInit.cs" />
     <Compile Include="Assets\Scripts\ApplicationInstaller.cs" />
     <Compile Include="Assets\Scripts\controller\boundary\DestroyByBoundary.cs" />
@@ -90,11 +84,16 @@
     <Compile Include="Assets\Scripts\controller\camera\CameraController.cs" />
     <Compile Include="Assets\Scripts\controller\camera\ICameraController.cs" />
     <Compile Include="Assets\Scripts\controller\commands\CommandsConfig.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\game\WaveRewardCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\StartGameCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\game\SpawnWaveZombiesCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\game\WaveProceedCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\game\WavePromoCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\menu\ShowMainMenuCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\pause\PauseGameCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\pause\ResumeGameCommand.cs" />
     <Compile Include="Assets\Scripts\controller\events\GameEvent.cs" />
+    <Compile Include="Assets\Scripts\controller\events\SettingEvent.cs" />
     <Compile Include="Assets\Scripts\controller\hatch\HatchController.cs" />
     <Compile Include="Assets\Scripts\controller\hatch\IHatchController.cs" />
     <Compile Include="Assets\Scripts\controller\headsup\HeadsUpController.cs" />
@@ -102,31 +101,42 @@
     <Compile Include="Assets\Scripts\controller\player\Gunner.cs" />
     <Compile Include="Assets\Scripts\controller\player\IPlayerController.cs" />
     <Compile Include="Assets\Scripts\controller\player\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\core\command\Command.cs" />
-    <Compile Include="Assets\Scripts\core\command\ICommand.cs" />
-    <Compile Include="Assets\Scripts\core\command\ISubCommand.cs" />
-    <Compile Include="Assets\Scripts\core\command\async\AsyncCommand.cs" />
-    <Compile Include="Assets\Scripts\core\command\macro\IMacro.cs" />
-    <Compile Include="Assets\Scripts\core\command\macro\ISequenceMacro.cs" />
-    <Compile Include="Assets\Scripts\core\command\macro\SequenceMacro.cs" />
-    <Compile Include="Assets\Scripts\core\command\macro\mapper\IGuard.cs" />
-    <Compile Include="Assets\Scripts\core\command\macro\mapper\ISubCommandMapper.cs" />
-    <Compile Include="Assets\Scripts\core\command\macro\mapper\SubCommandMapper.cs" />
-    <Compile Include="Assets\Scripts\core\command\map\CommandsMap.cs" />
-    <Compile Include="Assets\Scripts\core\command\map\ICommandsMap.cs" />
-    <Compile Include="Assets\Scripts\core\config\IConfig.cs" />
-    <Compile Include="Assets\Scripts\core\delegates\CustomDelegate.cs" />
-    <Compile Include="Assets\Scripts\core\eventdispatcher\EventDispatcher.cs" />
-    <Compile Include="Assets\Scripts\core\eventdispatcher\IEventDispatcher.cs" />
-    <Compile Include="Assets\Scripts\core\events\BaseEvent.cs" />
-    <Compile Include="Assets\Scripts\core\model\Model.cs" />
-    <Compile Include="Assets\Scripts\core\touch\Toucher.cs" />
+    <Compile Include="Assets\Scripts\controller\settings\SettingName.cs" />
+    <Compile Include="Assets\Scripts\controller\settings\SettingsManager.cs" />
+    <Compile Include="Assets\Scripts\controller\zombie\IZombieFactory.cs" />
+    <Compile Include="Assets\Scripts\controller\zombie\ZombieBehaviour.cs" />
+    <Compile Include="Assets\Scripts\controller\zombie\ZombieFactory.cs" />
     <Compile Include="Assets\Scripts\model\core\ApplicationModel.cs" />
     <Compile Include="Assets\Scripts\model\level\ILevelModel.cs" />
     <Compile Include="Assets\Scripts\model\level\LevelModel.cs" />
     <Compile Include="Assets\Scripts\model\level\wave\AwardModel.cs" />
     <Compile Include="Assets\Scripts\model\level\wave\WaveModel.cs" />
     <Compile Include="Assets\Scripts\model\level\wave\ZombieModel.cs" />
+    <Compile Include="Assets\Scripts\sw.core\command\Command.cs" />
+    <Compile Include="Assets\Scripts\sw.core\command\ICommand.cs" />
+    <Compile Include="Assets\Scripts\sw.core\command\ISubCommand.cs" />
+    <Compile Include="Assets\Scripts\sw.core\command\async\AsyncCommand.cs" />
+    <Compile Include="Assets\Scripts\sw.core\command\macro\IMacro.cs" />
+    <Compile Include="Assets\Scripts\sw.core\command\macro\ISequenceMacro.cs" />
+    <Compile Include="Assets\Scripts\sw.core\command\macro\SequenceMacro.cs" />
+    <Compile Include="Assets\Scripts\sw.core\command\macro\mapper\IGuard.cs" />
+    <Compile Include="Assets\Scripts\sw.core\command\macro\mapper\ISubCommandMapper.cs" />
+    <Compile Include="Assets\Scripts\sw.core\command\macro\mapper\SubCommandMapper.cs" />
+    <Compile Include="Assets\Scripts\sw.core\command\map\CommandsMap.cs" />
+    <Compile Include="Assets\Scripts\sw.core\command\map\ICommandsMap.cs" />
+    <Compile Include="Assets\Scripts\sw.core\config\IConfig.cs" />
+    <Compile Include="Assets\Scripts\sw.core\delegates\CustomDelegate.cs" />
+    <Compile Include="Assets\Scripts\sw.core\eventdispatcher\EventDispatcher.cs" />
+    <Compile Include="Assets\Scripts\sw.core\eventdispatcher\IEventDispatcher.cs" />
+    <Compile Include="Assets\Scripts\sw.core\events\BaseEvent.cs" />
+    <Compile Include="Assets\Scripts\sw.core\model\Model.cs" />
+    <Compile Include="Assets\Scripts\sw.core\pool\IPool.cs" />
+    <Compile Include="Assets\Scripts\sw.core\pool\PoolCore.cs" />
+    <Compile Include="Assets\Scripts\sw.core\pool\PoolSubject.cs" />
+    <Compile Include="Assets\Scripts\sw.core\settings\AnstractSettingsManager.cs" />
+    <Compile Include="Assets\Scripts\sw.core\settings\ISettingsManager.cs" />
+    <Compile Include="Assets\Scripts\sw.core\settings\SettingItem.cs" />
+    <Compile Include="Assets\Scripts\sw.core\touch\Toucher.cs" />
     <Compile Include="Assets\Scripts\test\TestAsyncCommand1.cs" />
     <Compile Include="Assets\Scripts\test\TestAsyncCommand2.cs" />
     <Compile Include="Assets\Scripts\test\TestAsyncCommand3.cs" />
@@ -141,6 +151,7 @@
     <Compile Include="Assets\Scripts\test\TestSimpleCommand3.cs" />
     <Compile Include="Assets\Scripts\view\headsup\MainMenu.cs" />
     <Compile Include="Assets\Scripts\view\headsup\MobileMenu.cs" />
+    <Compile Include="Assets\Scripts\view\headsup\PauseMenu.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder0.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder1.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder2.cs" />
@@ -332,7 +343,6 @@
     <Compile Include="Assets\Zenject\Source\Validation\IValidatable.cs" />
     <Compile Include="Assets\Zenject\Source\Validation\ValidationMarker.cs" />
     <Compile Include="Assets\Zenject\Source\Validation\ValidationSceneDisabler.cs" />
-    <Compile Include="Assets\ZombieBehaviour.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\Font48\font48.fnt" />
