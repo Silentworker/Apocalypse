@@ -5,7 +5,7 @@ using Assets.Scripts.sw.core.command.async;
 using ModestTree;
 using Zenject;
 
-namespace Assets.Scripts.controller.commands.game
+namespace Assets.Scripts.controller.commands.game.wave
 {
     public class WavePromoCommand : AsyncCommand
     {
@@ -22,15 +22,8 @@ namespace Assets.Scripts.controller.commands.game
 
             headsUpController.ShowPrompt("Волна {0} начинается...".Fmt(_wave.Id));
 
-            _timer = new Timer { Interval = 3000, AutoReset = false };
-            _timer.Elapsed += delegate { delayedComplete(); };
-            _timer.Start();
-        }
-
-        private void delayedComplete()
-        {
-            _timer.Dispose();
             DispatchComplete(true);
+            _wave = null;
         }
     }
 }

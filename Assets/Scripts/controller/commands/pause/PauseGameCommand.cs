@@ -5,7 +5,7 @@ using Command = Assets.Scripts.sw.core.command.Command;
 
 namespace Assets.Scripts.controller.commands.pause
 {
-    public class PauseGameCommand : sw.core.command.Command
+    public class PauseGameCommand : Command
     {
         [Inject]
         IHeadsUpController headsUpController;

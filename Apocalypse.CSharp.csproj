@@ -13,13 +13,11 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>5.4.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -77,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PrompttManager.cs" />
     <Compile Include="Assets\Scripts\ApplicationInit.cs" />
     <Compile Include="Assets\Scripts\ApplicationInstaller.cs" />
     <Compile Include="Assets\Scripts\controller\boundary\DestroyByBoundary.cs" />
@@ -84,11 +83,11 @@
     <Compile Include="Assets\Scripts\controller\camera\CameraController.cs" />
     <Compile Include="Assets\Scripts\controller\camera\ICameraController.cs" />
     <Compile Include="Assets\Scripts\controller\commands\CommandsConfig.cs" />
-    <Compile Include="Assets\Scripts\controller\commands\game\WaveRewardCommand.cs" />
-    <Compile Include="Assets\Scripts\controller\commands\StartGameCommand.cs" />
-    <Compile Include="Assets\Scripts\controller\commands\game\SpawnWaveZombiesCommand.cs" />
-    <Compile Include="Assets\Scripts\controller\commands\game\WaveProceedCommand.cs" />
-    <Compile Include="Assets\Scripts\controller\commands\game\WavePromoCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\game\StartGameCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\game\wave\WaveProceedCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\game\wave\WavePromoCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\game\wave\WaveRewardCommand.cs" />
+    <Compile Include="Assets\Scripts\controller\commands\game\wave\WaveZombiesLifeTimeCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\menu\ShowMainMenuCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\pause\PauseGameCommand.cs" />
     <Compile Include="Assets\Scripts\controller\commands\pause\ResumeGameCommand.cs" />
@@ -152,6 +151,7 @@
     <Compile Include="Assets\Scripts\view\headsup\MainMenu.cs" />
     <Compile Include="Assets\Scripts\view\headsup\MobileMenu.cs" />
     <Compile Include="Assets\Scripts\view\headsup\PauseMenu.cs" />
+    <Compile Include="Assets\Scripts\view\headsup\Prompts.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder0.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder1.cs" />
     <Compile Include="Assets\Zenject\OptionalExtras\CommandsAndSignals\Command\Binders\CommandBinder2.cs" />

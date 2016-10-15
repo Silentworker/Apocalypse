@@ -22,6 +22,7 @@ namespace Assets.Scripts
         public HeadsUpController headsUpController;
         public PlayerController playerController;
         public HatchController hatchController;
+        public ZombieFactory zombieFactory;
 
         public override void InstallBindings()
         {
@@ -31,7 +32,6 @@ namespace Assets.Scripts
             Container.Bind<IConfig>().To<CommandsConfig>().AsSingle();
             Container.Bind<ILevelModel>().To<LevelModel>().AsSingle();
             Container.Bind<ISettingsManager>().To<SettingsManager>().AsSingle().NonLazy();
-            Container.Bind<IZombieFactory>().To<ZombieFactory>().AsSingle();
 
             Container.Bind<ApplicationModel>().AsSingle();
 
@@ -42,6 +42,7 @@ namespace Assets.Scripts
             Container.Bind<IHeadsUpController>().FromInstance(headsUpController);
             Container.Bind<IPlayerController>().FromInstance(playerController);
             Container.Bind<IHatchController>().FromInstance(hatchController);
+            Container.Bind<IZombieFactory>().FromInstance(zombieFactory);
         }
     }
 }

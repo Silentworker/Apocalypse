@@ -1,12 +1,11 @@
 ﻿using Assets.Scripts.controller.camera;
 using Assets.Scripts.controller.headsup;
-using UnityEngine;
 using Zenject;
 using Command = Assets.Scripts.sw.core.command.Command;
 
 namespace Assets.Scripts.controller.commands.menu
 {
-    public class ShowMainMenuCommand : sw.core.command.Command
+    public class ShowMainMenuCommand : Command
     {
         [Inject]
         private ICameraController cameraController;

@@ -5,7 +5,7 @@ namespace Assets.Scripts.controller.zombie
 {
     public class ZombieBehaviour : MonoBehaviour
     {
-        public GameObject Target;
+        private GameObject Target;
 
         private NavMeshAgent _navMeshAgent;
         private ZombieModel _model;

@@ -1,10 +1,9 @@
-﻿using Assets.Scripts.controller.commands.game;
+﻿using Assets.Scripts.controller.commands.game.wave;
 using Assets.Scripts.controller.commands.menu;
 using Assets.Scripts.controller.commands.pause;
 using Assets.Scripts.controller.events;
 using Assets.Scripts.sw.core.command.map;
 using Assets.Scripts.sw.core.config;
-using Assets.Scripts.test;
 using Zenject;
 
 namespace Assets.Scripts.controller.commands

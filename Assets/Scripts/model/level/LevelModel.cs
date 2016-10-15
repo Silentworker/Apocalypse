@@ -13,6 +13,9 @@ namespace Assets.Scripts.model.level
 {
     public class LevelModel : Model, ILevelModel
     {
+        [Inject]
+        private IEventDispatcher eventDispatcher;
+
         private List<WaveModel> _waves = new List<WaveModel>();
         private WaveModel _currentWave;
 
@@ -104,7 +107,7 @@ namespace Assets.Scripts.model.level
 
         public void Start()
         {
-            
+            StartNextWave();
         }
 
         private void StartNextWave()

@@ -50,14 +50,18 @@ namespace Assets.Scripts.controller.player
         private void CreateMachineGunBullets()
         {
             _shootTime += Time.fixedDeltaTime;
-            if (_shootTime > MachineGunShotDelay)
-            {
-                _shootTime = 0;
-                Instantiate(MachineGunBulletPrefab, MachineGunShootPointL.transform.position,
-                    MachineGunShootPointL.transform.rotation);
-                Instantiate(MachineGunBulletPrefab, MachineGunShootPointR.transform.position,
-                    MachineGunShootPointL.transform.rotation);
-            }
+            if ((_shootTime < MachineGunShotDelay)) return;
+
+            _shootTime = 0;
+            Instantiate(
+                MachineGunBulletPrefab,
+                MachineGunShootPointL.transform.position,
+                MachineGunShootPointL.transform.rotation
+                );
+            Instantiate(MachineGunBulletPrefab,
+                MachineGunShootPointR.transform.position,
+                MachineGunShootPointL.transform.rotation
+                );
         }
 
         public void FireCannon()

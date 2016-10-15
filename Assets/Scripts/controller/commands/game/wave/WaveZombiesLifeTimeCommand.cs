@@ -1,14 +1,13 @@
-﻿using System.Runtime.InteropServices;
-using Assets.Scripts.controller.events;
+﻿using Assets.Scripts.controller.events;
 using Assets.Scripts.controller.zombie;
 using Assets.Scripts.model.level.wave;
 using Assets.Scripts.sw.core.command.async;
 using Assets.Scripts.sw.core.eventdispatcher;
 using Zenject;
 
-namespace Assets.Scripts.controller.commands.game
+namespace Assets.Scripts.controller.commands.game.wave
 {
-    public class SpawnWaveZombiesCommand : AsyncCommand
+    public class WaveZombiesLifeTimeCommand : AsyncCommand
     {
         [Inject]
         private IEventDispatcher eventDispatcher;
@@ -47,7 +46,7 @@ namespace Assets.Scripts.controller.commands.game
 
         private void SpawnZombie(ZombieModel zombie)
         {
-            zombieFactory.Spawn(zombie);
+            zombieFactory.AddSpawnable(zombie);
         }
 
         private void onZombieKilldedHandler(object data = null)
@@ -61,6 +60,7 @@ namespace Assets.Scripts.controller.commands.game
         {
             eventDispatcher.RemoveEventListener(GameEvent.ZombieKilled, onZombieKilldedHandler);
             DispatchComplete(true);
+            _wave = null;
         }
     }
 }
