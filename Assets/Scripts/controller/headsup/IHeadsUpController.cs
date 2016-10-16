@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.controller.headsup
+﻿using System;
+
+namespace Assets.Scripts.controller.headsup
 {
     public interface IHeadsUpController
     {
@@ -14,6 +16,6 @@
 
         void HidePauseMenu();
 
-        void ShowPrompt(string promo);
+        void ShowPrompt(string promo, float duration = float.NaN);
     }
 }

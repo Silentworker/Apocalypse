@@ -7,5 +7,6 @@ namespace Assets.Scripts.sw.core.delegates
         public delegate void Void();
         public delegate void BoolParameter(bool check);
         public delegate void CommandCompete(ICommand command, bool success);
+        public delegate void ObjectArrayParameters(object[] args);
     }
 }

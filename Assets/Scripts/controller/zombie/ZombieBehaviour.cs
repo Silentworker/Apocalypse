@@ -14,6 +14,7 @@ namespace Assets.Scripts.controller.zombie
         {
             _model = model;
             Target = GameObject.FindGameObjectWithTag("Gate");
+            navMeshAgent.speed = model.Speed;
             MoveToTarget();
 
             transform.position = new Vector3(model.SpawnPosition, transform.position.y, transform.position.z);

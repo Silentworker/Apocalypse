@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.model.core;
+﻿using System;
+using Assets.Scripts.model.core;
 using Assets.Scripts.sw.core.eventdispatcher;
 using Assets.Scripts.view.headsup;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Assets.Scripts.controller.headsup
         private MainMenu _mainMenu;
         private MobileMenu _mobileMenu;
         private PauseMenu _pauseMenu;
+        private Prompts _prompts;
 
         void Update()
         {
@@ -67,9 +69,9 @@ namespace Assets.Scripts.controller.headsup
             pauseMenu.HideMenu();
         }
 
-        public void ShowPrompt(string promo)
+        public void ShowPrompt(string promo, float duration = float.NaN)
         {
-
+            prompts.ShowPrompt(promo, duration);
         }
 
         private MainMenu mainMenu
@@ -86,5 +88,11 @@ namespace Assets.Scripts.controller.headsup
         {
             get { return _pauseMenu ?? (_pauseMenu = GetComponent<PauseMenu>()); }
         }
+
+        private Prompts prompts
+        {
+            get { return _prompts ?? (_prompts = GetComponent<Prompts>()); }
+        }
+
     }
 }
