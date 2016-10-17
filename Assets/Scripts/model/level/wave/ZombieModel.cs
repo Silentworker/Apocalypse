@@ -22,5 +22,10 @@ namespace Assets.Scripts.model.level.wave
         public float HitDelay;
         public float SpawnDelay;
         public float SpawnPosition;
+
+        public ZombieModel Clone()
+        {
+            return (ZombieModel)MemberwiseClone();
+        }
     }
 }

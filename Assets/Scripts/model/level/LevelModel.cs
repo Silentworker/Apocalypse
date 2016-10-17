@@ -7,6 +7,7 @@ using Assets.Scripts.model.level.wave;
 using Assets.Scripts.sw.core.eventdispatcher;
 using Assets.Scripts.sw.core.model;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 namespace Assets.Scripts.model.level
@@ -107,10 +108,11 @@ namespace Assets.Scripts.model.level
 
         public void Start()
         {
-            StartNextWave();
+            eventDispatcher.AddEventListener(GameEvent.WaveComplete, startNextWave);
+            startNextWave();
         }
 
-        private void StartNextWave()
+        private void startNextWave(object data = null)
         {
             if (_currentWave == null)
             {
@@ -120,9 +122,13 @@ namespace Assets.Scripts.model.level
             {
                 int currentWaveIndex = _waves.IndexOf(_currentWave);
 
-                if (++currentWaveIndex < (_waves.Count - 1))
+                if (++currentWaveIndex < (_waves.Count))
                 {
                     _currentWave = _waves[currentWaveIndex];
+                }
+                else
+                {
+                    eventDispatcher.DispatchEvent(GameEvent.LevelComplete);
                 }
             }
 

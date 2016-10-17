@@ -6,7 +6,6 @@
     <zombie type ="0" health ="5" speed ="8" hitDamage ="1" hitDelay="1" spawnDelay ="2" spawnPosition ="5"/>
     <zombie type ="0" health ="8" speed ="7" hitDamage ="1" hitDelay="1" spawnDelay ="5" spawnPosition ="-30"/>
     <zombie type ="0" health ="15" speed ="5" hitDamage ="3" hitDelay="3" spawnDelay ="8" spawnPosition ="45"/>
-    <random type ="0" amount ="5" speed ="5:10"/>
   </wave>
   <!--End region: Волна 1-->
 

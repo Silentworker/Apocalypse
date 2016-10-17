@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.controller.commands.game.wave;
+﻿using Assets.Scripts.controller.commands.game;
+using Assets.Scripts.controller.commands.game.wave;
 using Assets.Scripts.controller.commands.menu;
 using Assets.Scripts.controller.commands.pause;
 using Assets.Scripts.controller.events;
@@ -20,6 +21,7 @@ namespace Assets.Scripts.controller.commands
             commandsMap.Map(GameEvent.PauseGame, typeof(PauseGameCommand));
             commandsMap.Map(GameEvent.ResumeGame, typeof(ResumeGameCommand));
             commandsMap.Map(GameEvent.StartWave, typeof(WaveProceedCommand));
+            commandsMap.Map(GameEvent.LevelComplete, typeof(LevelCompleteCommand));
 
             //commandsMap.Map(GameEvent.Test, typeof(TestMacro1));
         }

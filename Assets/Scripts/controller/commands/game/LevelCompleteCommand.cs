@@ -1,31 +1,28 @@
-﻿using System.Timers;
-using Assets.Scripts.controller.headsup;
-using Assets.Scripts.model.level.wave;
+﻿using Assets.Scripts.controller.headsup;
+using Assets.Scripts.model.core;
 using Assets.Scripts.sw.core.command.async;
 using DG.Tweening;
 using ModestTree;
 using Zenject;
 
-namespace Assets.Scripts.controller.commands.game.wave
+namespace Assets.Scripts.controller.commands.game
 {
-    public class WavePromoCommand : AsyncCommand
+    public class LevelCompleteCommand : AsyncCommand
     {
         [Inject]
         private IHeadsUpController headsUpController;
-        private WaveModel _wave;
+        [Inject]
+        private ApplicationModel applicationModel;
+
         public override void Execute(object data = null)
         {
-            base.Execute();
-
-            _wave = (WaveModel)data;
             const float promoDuration = 5f;
-            headsUpController.ShowPrompt("Волна {0} начинается...".Fmt(_wave.Id), promoDuration);
+            headsUpController.ShowPrompt("Уровень пройден!", promoDuration);
             DOVirtual.DelayedCall(promoDuration, dellayedComplete);
         }
 
         private void dellayedComplete()
         {
-            _wave = null;
             DispatchComplete(true);
         }
     }

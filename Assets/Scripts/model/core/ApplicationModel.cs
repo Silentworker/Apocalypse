@@ -9,20 +9,21 @@ namespace Assets.Scripts.model.core
 {
     public class ApplicationModel : Model
     {
-        [Inject]
-        ILevelModel levelModel;
-
         private int _score;
         private int _gateHealth;
+        private ILevelModel _levelModel;
 
         public ApplicationModel(IEventDispatcher dispatcher, DiContainer container) : base(dispatcher, container)
         {
             GamePaused = false;
+
+            _levelModel = container.Resolve<ILevelModel>();
         }
 
         public void Init()
         {
             Debug.Log("Application model initiated");
+
             eventDispatcher.DispatchEvent(GameEvent.ShowMainMenu);
         }
 
@@ -44,7 +45,7 @@ namespace Assets.Scripts.model.core
 
         public void StartLevel()
         {
-            levelModel.Start();
+            _levelModel.Start();
         }
 
         public bool GamePaused { get; private set; }

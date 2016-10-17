@@ -33,7 +33,7 @@ namespace Assets.Scripts
             Container.Bind<ILevelModel>().To<LevelModel>().AsSingle();
             Container.Bind<ISettingsManager>().To<SettingsManager>().AsSingle().NonLazy();
 
-            Container.Bind<ApplicationModel>().AsSingle();
+            Container.Bind<ApplicationModel>().AsSingle().NonLazy();
 
             /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~
                 MonoBehaviour controllers
