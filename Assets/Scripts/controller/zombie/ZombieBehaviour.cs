@@ -8,6 +8,8 @@ namespace Assets.Scripts.controller.zombie
 {
     public class ZombieBehaviour : MonoBehaviour
     {
+        public static int Number = 0;
+
         [Inject]
         private IEventDispatcher eventDispatcher;
 
@@ -22,6 +24,11 @@ namespace Assets.Scripts.controller.zombie
             {
                 ApplyDamage(1f);
             }
+        }
+
+        void OnDestroy()
+        {
+            Debug.LogFormat("Number destroyed: {0}", ++Number);
         }
 
         public void SetZombieData(ZombieModel model)
@@ -46,11 +53,6 @@ namespace Assets.Scripts.controller.zombie
             navMeshAgent.Stop();
         }
 
-        private NavMeshAgent navMeshAgent
-        {
-            get { return _navMeshAgent ?? (_navMeshAgent = GetComponent<NavMeshAgent>()); }
-        }
-
         private void ApplyDamage(float damage)
         {
             if (Dead) return;
@@ -60,9 +62,33 @@ namespace Assets.Scripts.controller.zombie
             {
                 eventDispatcher.DispatchEvent(GameEvent.ZombieKilled, _primeModel);
                 Destroy(gameObject);
+                return;
+            }
+
+            if (_model.Health < _primeModel.Health * .5f)
+            {
+                Speed = _primeModel.Speed * .5f;
             }
         }
 
-        private bool Dead { get { return _model.Health <= 0; } }
+        private float Speed
+        {
+            set
+            {
+                navMeshAgent.speed = value;
+                _model.Speed = value;
+            }
+            get { return _model.Speed; }
+        }
+
+        private NavMeshAgent navMeshAgent
+        {
+            get { return _navMeshAgent ?? (_navMeshAgent = GetComponent<NavMeshAgent>()); }
+        }
+
+        private bool Dead
+        {
+            get { return _model.Health <= 0; }
+        }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Assets.Scripts.controller.events;
 using Assets.Scripts.model.level;
+using Assets.Scripts.model.level.executor;
+using Assets.Scripts.model.level.parser;
 using Assets.Scripts.sw.core.eventdispatcher;
 using Assets.Scripts.sw.core.model;
 using UnityEngine;
@@ -9,15 +11,17 @@ namespace Assets.Scripts.model.core
 {
     public class ApplicationModel : Model
     {
+        [Inject]
+        private IConfigParser configParser;
+        [Inject]
+        private ILevelExecutor levelExecutor;
+
         private int _score;
         private int _gateHealth;
-        private ILevelModel _levelModel;
 
         public ApplicationModel(IEventDispatcher dispatcher, DiContainer container) : base(dispatcher, container)
         {
             GamePaused = false;
-
-            _levelModel = container.Resolve<ILevelModel>();
         }
 
         public void Init()
@@ -45,7 +49,9 @@ namespace Assets.Scripts.model.core
 
         public void StartLevel()
         {
-            _levelModel.Start();
+            var level = configParser.GetLevel(1);
+
+            levelExecutor.ExecuteLevel(level);
         }
 
         public bool GamePaused { get; private set; }
