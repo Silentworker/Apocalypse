@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0"?>
 <Config>
   <Level Id ="1">
-
+    <Gate Health ="100"/>
+    
     <Wave Id ="1">
       <Award Score ="100"/>
-      <!--<Zombie Form ="0" Health ="15" Speed ="15" HitDamage ="3" HitDelay="3" SpawnDelay ="2" SpawnPosition ="0"/>-->
-      <!--<Zombie Form ="0" Health ="15" Speed ="15" HitDamage ="3" HitDelay="3" SpawnDelay ="5" SpawnPosition ="0"/>
-      <Zombie Form ="0" Health ="15" Speed ="15" HitDamage ="3" HitDelay="3" SpawnDelay ="7" SpawnPosition ="0"/>-->
-      <Zombie Amount ="50:100" Form ="0" Health ="5:10" Speed="5:15" HitDamage="1:3" HitDelay ="3:5" SpawnDelay ="2:25" SpawnPosition ="-80:80"/>
-      <!--<Zombie Form ="1" Health ="150" Speed ="5" HitDamage ="30" HitDelay="5" SpawnDelay ="20" SpawnPosition ="0"/>-->
+      <Zombie Form ="0" Health ="15" Speed ="15" HitDamage ="3" HitDelay="3" SpawnDelay ="1" SpawnPosition ="-15"/>
+      <Zombie Form ="0" Health ="10:20" Speed ="15" HitDamage ="3" HitDelay="3" SpawnDelay ="2" SpawnPosition ="0"/>
+      <Zombie Form ="0" Health ="15" Speed ="15" HitDamage ="3" HitDelay="3" SpawnDelay ="3" SpawnPosition ="15"/>
+      <Zombie Amount ="5" Form ="0" Health ="5:10" Speed="5:15" HitDamage="1:3" HitDelay ="3:5" SpawnDelay ="5:25" SpawnPosition ="-50:50"/>
     </Wave>
 
     <Wave Id ="2">

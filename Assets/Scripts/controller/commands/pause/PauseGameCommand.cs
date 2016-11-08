@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.controller.headsup;
+﻿using Assets.Scripts.view.headsup;
 using UnityEngine;
 using Zenject;
 using Command = Assets.Scripts.sw.core.command.Command;

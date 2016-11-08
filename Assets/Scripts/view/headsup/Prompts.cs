@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Assets.Scripts.consts;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -18,12 +19,12 @@ namespace Assets.Scripts.view.headsup
             _prompt = promptPrefab.GetComponent<Text>();
             _prompt.text = promo;
 
-            var hideDuration = float.IsNaN(duration) ? 3 : duration;
+            var hideDuration = float.IsNaN(duration) ? Duration.DefaultPromptShow : duration;
 
-            DOVirtual.DelayedCall(hideDuration, delayedHide);
+            DOVirtual.DelayedCall(hideDuration, DelayedHide, false);
         }
 
-        private void delayedHide()
+        private void DelayedHide()
         {
             Destroy(_prompt);
         }

@@ -4,6 +4,8 @@ namespace Assets.Scripts.controller.zombie
 {
     public interface IZombieFactory
     {
-        void AddSpawnable(ZombieModel zombieModel);
+        void AddSpawnable(ZombieModel zombie);
+
+        void ClearSpawns();
     }
 }

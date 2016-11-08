@@ -22,6 +22,7 @@ namespace Assets.Scripts.controller.commands
             commandsMap.Map(GameEvent.ResumeGame, typeof(ResumeGameCommand));
             commandsMap.Map(GameEvent.StartWave, typeof(WaveProceedCommand));
             commandsMap.Map(GameEvent.LevelComplete, typeof(LevelCompleteCommand));
+            commandsMap.Map(GameEvent.GateDestroyed, typeof(GateDestroyedCommand));
 
             //commandsMap.Map(GameEvent.Test, typeof(TestMacro1));
         }

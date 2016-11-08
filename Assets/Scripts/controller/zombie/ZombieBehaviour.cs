@@ -1,6 +1,9 @@
-﻿using Assets.Scripts.controller.events;
+﻿using System;
+using Assets.Scripts.consts;
+using Assets.Scripts.controller.events;
 using Assets.Scripts.model.level.wave;
 using Assets.Scripts.sw.core.eventdispatcher;
+using Assets.Scripts.view.headsup;
 using UnityEngine;
 using Zenject;
 
@@ -8,27 +11,58 @@ namespace Assets.Scripts.controller.zombie
 {
     public class ZombieBehaviour : MonoBehaviour
     {
-        public static int Number = 0;
-
         [Inject]
         private IEventDispatcher eventDispatcher;
+        [Inject]
+        private IHeadsUpController headsUpController;
 
         private GameObject _target;
         private NavMeshAgent _navMeshAgent;
-        private ZombieModel _primeModel;
-        private ZombieModel _model;
+        private ZombieModel _primeModel; // Unchangable
+        private ZombieModel _model;      // Changable
+        private float _initialHitTime = float.NaN;
 
         void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "MachineGunBullet")
+            if (other.tag == Tag.MachineGunBullet)
             {
-                ApplyDamage(1f);
+                TakeDamage(Damage.MachineGunBaseDamage);
             }
+        }
+
+        void Update()
+        {
+            var distance = Vector3.Distance(transform.position, Target.transform.position);
+
+            if (distance < Distance.ZombieDamageDistance)
+            {
+                if (float.IsNaN(_initialHitTime))
+                {
+                    _initialHitTime = Time.time;
+                }
+                else
+                {
+                    if (Time.time >= _initialHitTime + _model.HitDelay)
+                    {
+                        HitTheGate();
+                        _initialHitTime = float.NaN;
+                    }
+                }
+            }
+            else
+            {
+                _initialHitTime = float.NaN;
+            }
+        }
+
+        private void HitTheGate()
+        {
+            eventDispatcher.DispatchEvent(GameEvent.GateDamage, _model.HitDamage);
         }
 
         void OnDestroy()
         {
-            Debug.LogFormat("Number destroyed: {0}", ++Number);
+            eventDispatcher.DispatchEvent(GameEvent.ZombieDestroyed, _primeModel);
         }
 
         public void SetZombieData(ZombieModel model)
@@ -36,28 +70,29 @@ namespace Assets.Scripts.controller.zombie
             _primeModel = model;
             _model = model.Clone();
 
-            _target = GameObject.FindGameObjectWithTag("Gate");
-            navMeshAgent.speed = model.Speed;
+            NavAgent.speed = model.Speed;
             MoveToTarget();
 
             transform.position = new Vector3(model.SpawnPosition, transform.position.y, transform.position.z);
         }
 
-        public void MoveToTarget()
+        private void MoveToTarget()
         {
-            navMeshAgent.SetDestination(_target.transform.position);
+            NavAgent.SetDestination(Target.transform.position);
         }
 
         public void Rest()
         {
-            navMeshAgent.Stop();
+            NavAgent.Stop();
         }
 
-        private void ApplyDamage(float damage)
+        private void TakeDamage(float damage)
         {
             if (Dead) return;
 
             _model.Health -= damage;
+            headsUpController.ShowZombieDamage(damage, transform.position);
+
             if (Dead)
             {
                 eventDispatcher.DispatchEvent(GameEvent.ZombieKilled, _primeModel);
@@ -65,7 +100,7 @@ namespace Assets.Scripts.controller.zombie
                 return;
             }
 
-            if (_model.Health < _primeModel.Health * .5f)
+            if (_model.Health < _primeModel.Health * .3f)
             {
                 Speed = _primeModel.Speed * .5f;
             }
@@ -75,15 +110,20 @@ namespace Assets.Scripts.controller.zombie
         {
             set
             {
-                navMeshAgent.speed = value;
+                NavAgent.speed = value;
                 _model.Speed = value;
             }
             get { return _model.Speed; }
         }
 
-        private NavMeshAgent navMeshAgent
+        private NavMeshAgent NavAgent
         {
             get { return _navMeshAgent ?? (_navMeshAgent = GetComponent<NavMeshAgent>()); }
+        }
+
+        private GameObject Target
+        {
+            get { return _target ?? (_target = GameObject.FindGameObjectWithTag(Tag.Gate)); }
         }
 
         private bool Dead
