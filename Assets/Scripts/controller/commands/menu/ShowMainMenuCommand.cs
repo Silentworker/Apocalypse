@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.controller.camera;
 using Assets.Scripts.controller.headsup;
+using Assets.Scripts.view.headsup;
 using Zenject;
 using Command = Assets.Scripts.sw.core.command.Command;
 

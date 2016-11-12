@@ -1,7 +1,7 @@
-﻿using System.Timers;
-using Assets.Scripts.controller.headsup;
+﻿using Assets.Scripts.controller.headsup;
 using Assets.Scripts.model.level.wave;
 using Assets.Scripts.sw.core.command.async;
+using Assets.Scripts.view.headsup;
 using DG.Tweening;
 using ModestTree;
 using Zenject;

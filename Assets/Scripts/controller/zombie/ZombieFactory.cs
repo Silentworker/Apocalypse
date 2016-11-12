@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Assets.Scripts.model.level.wave;
 using DG.Tweening;
 using UnityEngine;
@@ -14,15 +15,32 @@ namespace Assets.Scripts.controller.zombie
 
         public GameObject ZombieSimplePrefab;
 
-        public void AddSpawnable(ZombieModel zombieModel)
+        private List<GameObject> _zombies = new List<GameObject>();
+        private List<Tween> _spawnTweens = new List<Tween>();
+
+        public void AddSpawnable(ZombieModel zombie)
         {
-            DOVirtual.DelayedCall(zombieModel.SpawnDelay, () => { spawn(zombieModel); });
+            _spawnTweens.Add(DOVirtual.DelayedCall(zombie.SpawnDelay, () => { Spawn(zombie); }, false));
         }
 
-        private void spawn(ZombieModel zombie)
+        public void ClearSpawns()
+        {
+            foreach (var tween in _spawnTweens)
+            {
+                tween.Kill();
+            }
+        }
+
+        public void Clear()
+        {
+            ClearSpawns();
+        }
+
+        private void Spawn(ZombieModel zombie)
         {
             var zombieObject = container.InstantiatePrefab(ZombieSimplePrefab);
             zombieObject.transform.SetParent(gameObject.transform, false);
+            _zombies.Add(zombieObject);
 
             var zombieBehaviour = zombieObject.GetComponent<ZombieBehaviour>();
             if (zombieBehaviour == null)

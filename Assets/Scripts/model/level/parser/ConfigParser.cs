@@ -33,7 +33,7 @@ namespace Assets.Scripts.model.level.parser
             }
             else
             {
-                Debug.LogError("No levels inlevel config file");
+                Debug.LogError("No levels in level config file");
             }
         }
 
@@ -121,7 +121,6 @@ namespace Assets.Scripts.model.level.parser
             var attributes = node.Attributes;
 
             int zombiesAmount = attributes["Amount"] != null ? (int)getAttributeValue(getAttributeRange(attributes["Amount"].Value)) : 1;
-            Debug.LogFormat("Zombies Amount:{0}", zombiesAmount);
 
             List<ZombieModel> result = new List<ZombieModel>();
             try
